@@ -18,6 +18,11 @@ class User(AbstractUser):
         blank = True,
     )
 
+    site = models.ManyToManyField(
+        Site,
+        blank = True,
+        verbose_name = _('Site'),
+    )
     
 
     class Meta(AbstractUser.Meta):
