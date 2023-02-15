@@ -12,3 +12,9 @@ class SiteForm(ModelForm):
     class Meta:
         model = Site
         fields = ("agence", "title", "description", "adresse")
+
+class AbonneForm(ModelForm):
+    
+    class Meta:
+        model = Abonne
+        fields = ("agence", "first_name", "last_name", "adresse", "phone", "ifu")

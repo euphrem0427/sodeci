@@ -15,14 +15,14 @@
                 <b class="logo-icon p-l-10">
                     <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                     <!-- Dark Logo icon -->
-                    <img src="{% static 'assets/images/logo-icon.png' %}" alt="homepage" class="light-logo" />
+                    <img src="{% static 'assets/images/omilaye-icon.png' %}" alt="homepage" class="light-logo" />
                     
                 </b>
                 <!--End Logo icon -->
                     <!-- Logo text -->
                 <span class="logo-text">
                         <!-- dark Logo text -->
-                        <img src="{% static 'assets/images/logo-text.png' %}" alt="homepage" class="light-logo" />
+                        <img src="{% static 'assets/images/omilaye-text.png' %}" alt="homepage" class="light-logo" />
                     
                 </span>
                 <!-- Logo icon -->
@@ -177,17 +177,17 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
             <ul id="sidebarnav" class="p-t-30">
-                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'home' %}" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a></li>
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'home' %}" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Tableau de bord</span></a></li>
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'agence_list' %}" aria-expanded="false"><i class="fa fa-building"></i><span class="hide-menu">Nos agences</span></a></li>
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'site_list' %}" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu"> Mes sites</span></a></li>
-                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#customer" aria-expanded="false"><i class="fas fa-users"></i><span class="hide-menu"> Abonnées</span></a></li>
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'list_abonne' %}" aria-expanded="false"><i class="fas fa-users"></i><span class="hide-menu"> Abonnées</span></a></li>
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Collectes </span></a>
                     <ul aria-expanded="false" class="collapse  first-level">
-                        <li class="sidebar-item"><a href="form-basic.html" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Abonnées </span></a></li>
-                        <li class="sidebar-item"><a href="form-wizard.html" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Site </span></a></li>
+                        <li class="sidebar-item"><a href="#abonne" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Abonnées </span></a></li>
+                        <li class="sidebar-item"><a href="#site" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Site </span></a></li>
                     </ul>
-                </li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#users" aria-expanded="false"><i class="fa fa-users"></i><span class="hide-menu">Utilisateurs</span></a></li>
-                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#stats" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Satitistiques </span></a></li>
+                </li><li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'list_users' %}" aria-expanded="false"><i class="fa fa-users"></i><span class="hide-menu">Utilisateurs</span></a></li>
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'stats' %}" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Satitistiques </span></a></li>
             </ul>
         </nav>
         <!-- End Sidebar navigation -->

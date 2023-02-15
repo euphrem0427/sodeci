@@ -1,37 +1,44 @@
 {% extends 'main.html' %}
-
+{% load static %}
+{% block extrastyle %}
+<link rel="stylesheet" type="text/css" href="{% static 'assets/extra-libs/multicheck/multicheck.css' %}">
+<link href="{% static 'assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css' %}" rel="stylesheet">    
+{% endblock extrastyle %}
 {% block content %}
 
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <a href="{% url 'add_agence' %}" class="btn btn-primary float-right mb-2">Ajouter une agence</a>
-                <h5 class="card-title">Liste des agences</h5>
+                <a href="{% url 'import_abonne' %}" class="btn btn-warning float-right mb-2 ml-2"><i class="fas fa-upload"></i></a>
+                <a href="{% url 'export_abonne' %}" class="btn btn-success float-right mb-2 ml-2"><i class="fas fa-download"></i></a>
+                <a href="{% url 'add_abonne' %}" class="btn btn-primary float-right mb-2">Ajouter une agence</a>
+                <h5 class="card-title">Liste des abonnées</h5>
                 <div class="table-responsive">
                     <table id="zero_config" class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>Nom</th>
+                                <th>Nom complet</th>
+                                <th>Agence</th>
                                 <th>Adresse</th>
-                                <th>Téléphone</th>
-                                <th>Email</th>
+                                <th>Tel</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                            {% for abonne in abonnes %}
                             <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
+                                <td>{{abonne.first_name}} {{abonne.last_name}}</td>
+                                <td>{{abonne.agence}}</td>
+                                <td>{{abonne.adresse}}</td>
+                                <td>{{abonne.phone}}</td>
                                 <td>
-                                    <a href="#add" class="btn btn-success m-1"><i class="fas fa-eye"></i></a>
-                                    <a href="#add" class="btn btn-primary m-1"><i class="fas fa-edit"></i></a>
-                                    <a href="#add" class="btn btn-danger m-1"><i class="fas fa-trash"></i></a>
+                                    <a href="/view_abonne/{{abonne.id}}/" class="btn btn-success m-1"><i class="fas fa-eye"></i></a>
+                                    <a href="/edit_abonne/{{abonne.id}}/" class="btn btn-primary m-1"><i class="fas fa-edit"></i></a>
+                                    <a href="/delete_abonne/{{abonne.id}}/" class="btn btn-danger m-1"><i class="fas fa-trash"></i></a>
                                 </td>
-                                
                             </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>

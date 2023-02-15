@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html dir="ltr" lang="en">
+<html dir="ltr" lang="fr">
 
 <head>
     <meta charset="utf-8">
@@ -10,12 +10,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/images/favicon.png' %}">
-    <title>SODECI</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/images/omilaye-icon.png' %}">
+    <title>OMILAYE</title>
     <!-- Custom CSS -->
     <link href="{% static 'assets/libs/flot/css/float-chart.css' %}" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{% static 'dist/css/style.min.css' %}" rel="stylesheet">
+    {% block extrastyle %}{% endblock extrastyle %}
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -97,7 +98,7 @@
     <script src="{% static 'assets/libs/flot/jquery.flot.crosshair.js' %}"></script>
     <script src="{% static 'assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js' %}"></script>
     <script src="{% static 'dist/js/pages/chart/chart-page-init.js' %}"></script>
-
+    {% block extrascript %}{% endblock extrascript %}
 </body>
 
 </html>

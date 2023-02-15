@@ -15,4 +15,13 @@ urlpatterns = [
     path('delete_site/<int:id>/', delete_site),
     path('edit_site/<int:id>/', edit_site),
     path('view_site/<int:id>/', view_site),
+
+    #Abonnées URls
+    path('list_abonne', list_abonne, name = 'list_abonne'),
+    path('add_abonne', add_abonne, name = 'add_abonne'),
+    path('delete_abonne/<int:id>/', delete_abonne),
+    path('edit_abonne/<int:id>/', edit_abonne),
+    path('view_abonne/<int:id>/', view_abonne),
+    path('import_abonne', import_abonne, name = 'import_abonne'),
+    path('export_abonne', export_abonne, name = 'export_abonne'),
 ]
