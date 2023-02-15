@@ -1,0 +1,42 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <form method = "POST" class="form-horizontal">
+                {% csrf_token %}
+                <div class="card-body">
+                    <h4 class="card-title">Information sur le site</h4>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Agence</label>
+                        <div class="col-md-9">
+                            <select name="agence" disabled class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                <option>{{site.agence}}</option>
+                            </select>
+                            
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Nom</label>
+                        <div class="col-sm-9">
+                            <input type="text" value="{{site.title}}" disabled name="title" class="form-control" id="fname" placeholder="Nom du site">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Adresse</label>
+                        <div class="col-sm-9">
+                            <input type="text" value="{{site.adresse}}" disabled name="adresse" class="form-control" id="lname" placeholder="Adresse">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Description</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" disabled>{{site.description}}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
