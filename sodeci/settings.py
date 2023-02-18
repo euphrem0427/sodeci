@@ -42,6 +42,8 @@ INSTALLED_APPS = [
 
     'app',
     'accounts',
+    'collecte',
+    'agence',
 
 ]
 
