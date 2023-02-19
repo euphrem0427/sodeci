@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'phonenumber_field',
 
+
     'app',
     'accounts',
     'collecte',
@@ -91,6 +92,19 @@ PHONENUMBER_DEFAULT_REGION = "BJ"
 
 PHONENUMBER_DEFAULT_FORMAT = "INTERNATIONAL"
 
+# Get your environment Mailjet keys
+MAILJET_API_KEY  = '8703efa37e76bae1a1b9592687990fdb'
+MAILJET_API_SECRET  = '32287b487427a5a1d4a8179afb68fa87'
+
+# Send mail config
+EMAIL_BACKEND = 'django_mailjet.backends.MailjetBackend'
+EMAIL_HOST = 'in-v3.mailjet.com'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'euphrem0427@gmail.com'
+EMAIL_HOST_PASSWORD = 'Coffi_0427'
+
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -128,7 +142,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr-fr'
 
 TIME_ZONE = 'UTC'
 

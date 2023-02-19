@@ -1,0 +1,32 @@
+{% extends "partials/base.html" %}
+{% load i18n %}
+
+{% block tbody %}
+<tr>
+    <td class="content-block">
+        Bonjour {{name}},<br>
+        Sauf erreur de notre part, vous êtes à présent enregistrer dans le système d'Omilayé
+        en tant qu'agent.
+         <strong></strong>.
+    </td>
+</tr>
+
+<tr>
+    <td class="content-block">
+        Pour accéder accéder à votre compte, vous devez créer votre mot de passe qui vous servira pour les prochaines connexions.
+    </td>
+</tr>
+
+<tr>
+    <td class="content-block">
+        <a href="{{link}}" class="btn-primary">Créer mon mot de passe</a>
+    </td>
+</tr>
+
+<tr>
+    <td class="content-block">
+        Si vous n'êtes pas à l'origine de cette demande, vous pouvez ignorer ce mail. Merci !
+    </td>
+</tr>
+
+{% endblock %}

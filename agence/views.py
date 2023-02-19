@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from app.models import *
 from .forms import *
 from .utils import *
+from django.contrib.auth.decorators import login_required
+from accounts.decorators import *
 # Create your views here.
 
 
@@ -11,6 +13,8 @@ from .utils import *
 
 ### Agence list ###
 
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['manager'])
 def agence_list(request):
     agences = Agence.objects.all()
     context = {
