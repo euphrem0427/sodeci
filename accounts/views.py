@@ -86,18 +86,17 @@ def add_user(request):
     }
     return render(request, 'pages/users/add.html', context)
 
+@unauthentificated_user
 def first_login(request, username):
 
     user = User.objects.get(username=username)
-    form = SetPasswordForm()
-    if request.method == 'POST':
-        form = SetPasswordForm(request.POST)
-        if form.is_valid():
-            if User.objects.get(email=form.cleaned_data['email']) == user:
-                user.set_password(form.cleaned_data['password1'])
-                user.save()
-                return redirect('login')
-    context = {}
+    if request.POST:
+        password = request.POST['password1']
+        user.set_password(password)
+        user.save()
+        return redirect('login')
+           
+    context = {'user': user}
     return render(request, 'accounts/first_login.html', context)
 
 
