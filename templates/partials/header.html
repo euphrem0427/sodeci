@@ -62,7 +62,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{% url 'choice_site_collect' %}">Site</a>
                         <a class="dropdown-item" href="#">Abonnée</a>
-                        <a class="dropdown-item" href="#">Maintenance</a>
+                        <a class="dropdown-item" href="{% url 'list_maintenance' %}">Maintenance</a>
                     </div>
                 </li>
                 <!-- ============================================================== -->
@@ -190,7 +190,7 @@
                     <ul aria-expanded="false" class="collapse  first-level">
                         <li class="sidebar-item"><a href="#ab" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Abonnées </span></a></li>
                         <li class="sidebar-item"><a href="{% url 'site_collect_list' %}" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Site </span></a></li>
-                        <li class="sidebar-item"><a href="#maint" class="sidebar-link"><i class=" fas fa-check-circle"></i><span class="hide-menu"> Maintenance </span></a></li>
+                        <li class="sidebar-item"><a href="{% url 'list_maintenance' %}" class="sidebar-link"><i class=" fas fa-check-circle"></i><span class="hide-menu"> Maintenance </span></a></li>
                     </ul>
                 </li>
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-user"></i><span class="hide-menu">Administration </span></a>

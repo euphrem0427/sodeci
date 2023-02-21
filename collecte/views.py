@@ -90,3 +90,51 @@ def delete_setting(request, id):
     setting = Setting.objects.get(id=id)
     setting.delete()
     return redirect('list_setting')
+
+
+################################################################
+### Maintenance Functions
+################################################################
+
+@login_required(login_url='login')
+def list_maintenance(request):
+    maintenances = Maintenance.objects.all()
+    context = {'maintenances':maintenances}
+    return render(request,'pages/collecte/maintenance/list.html',context)
+
+@login_required(login_url='login')
+def choice_maintenance_site(request):
+    sites = Site.objects.all()
+    context = {'sites': sites}
+    return render(request,'pages/collecte/maintenance/choice_site.html',context)
+
+@login_required(login_url='login')
+def create_maintenance(request, id):
+    site = Site.objects.get(id=id)
+    
+    maintenance = Maintenance.objects.create(
+        site = site,
+        agent = request.user
+    )
+    url = '/add_maintenance/' + str(maintenance.id) + '/'
+    return redirect(url)
+
+@login_required(login_url='login')
+def add_maintenance(request, id):
+    maintenance = Maintenance.objects.get(id=id)
+    
+    settings = Setting.objects.all()
+    if request.POST:
+        for setting in settings:
+            value = request.POST[str(setting.id)]
+            MaintenanceDetail.objects.create(
+                maintenance = maintenance,
+                setting = setting,
+                value = value
+            )
+        return redirect('list_maintenance')
+
+    context={
+        'settings': settings
+    }
+    return render(request, 'pages/collecte/maintenance/add.html', context)

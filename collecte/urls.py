@@ -10,4 +10,11 @@ urlpatterns = [
     path('add_setting/', add_setting, name="add_setting"),
     path('view_setting/<int:id>/', view_setting),
     path('delete_setting/<int:id>/', delete_setting),
+
+    path('list_maintenance/', list_maintenance, name="list_maintenance"),
+    path('add_maintenance/<int:id>/', add_maintenance),
+    path('create_maintenance/<int:id>/', create_maintenance),
+    path('choice_maintenance_site', choice_maintenance_site, name="choice_maintenance_site"),
+
+    
 ]

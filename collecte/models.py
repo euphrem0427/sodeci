@@ -88,6 +88,13 @@ class Maintenance(models.Model):
         Site,
         on_delete=models.CASCADE
     )
+
+    agent = models.ForeignKey(
+        User,
+        verbose_name=_("User"),
+        on_delete=models.SET_NULL,
+        null = True,
+    )
     
     date = models.DateTimeField(auto_now_add=True)
 
@@ -96,7 +103,7 @@ class Maintenance(models.Model):
         verbose_name_plural = _("Maintenances")
 
     def __str__(self):
-        return self.name
+        return str(self.site)
 
     def get_absolute_url(self):
         return reverse("Maintenance_detail", kwargs={"pk": self.pk})
@@ -117,7 +124,7 @@ class MaintenanceDetail(models.Model):
         verbose_name_plural = _("MaintenanceDetails")
 
     def __str__(self):
-        return self.name
+        return str(self.maintenance)
 
     def get_absolute_url(self):
         return reverse("MaintenanceDetail_detail", kwargs={"pk": self.pk})
