@@ -44,7 +44,7 @@ class Site(models.Model):
         verbose_name_plural = _("Sites")
 
     def __str__(self):
-        return self.name
+        return self.title
 
     def get_absolute_url(self):
         return reverse("Site_detail", kwargs={"pk": self.pk})
@@ -63,13 +63,14 @@ class Abonne(models.Model):
     ifu = models.CharField(max_length=13)
     adresse = models.CharField(max_length=255, blank=True, null=True)
     phone = PhoneNumberField(_('Contact'), null = True, blank = True)
+    date_ajout = models.DateTimeField(auto_now_add=True, null = True, blank = True)
 
     class Meta:
         verbose_name = _("Abonne")
         verbose_name_plural = _("Abonnes")
 
     def __str__(self):
-        return self.name
+        return str (self.first_name) + " " + str(self.last_name)
 
     def get_absolute_url(self):
         return reverse("Abonne_detail", kwargs={"pk": self.pk})

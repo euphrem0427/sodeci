@@ -12,6 +12,7 @@ from django.utils.html import strip_tags
 from django.core.mail import EmailMultiAlternatives
 from django.core.mail import send_mail, BadHeaderError
 from app.models import *
+from django.contrib.auth.models import Group
 # Create your views here.
 
 @login_required(login_url='login')
@@ -43,6 +44,8 @@ def logout(request):
 def reset_password(request):
     return render(request, 'accounts/login.html')
 
+
+@login_required(login_url='login')
 def list_users(request):
     users = User.objects.all()
     context = {
@@ -50,6 +53,8 @@ def list_users(request):
     }
     return render(request, 'pages/users/list.html', context)
 
+
+@login_required(login_url='login')
 def add_user(request):
     sites = Site.objects.all()
     agences = Agence.objects.all()
@@ -86,6 +91,7 @@ def add_user(request):
     }
     return render(request, 'pages/users/add.html', context)
 
+
 @unauthentificated_user
 def first_login(request, username):
 
@@ -100,19 +106,59 @@ def first_login(request, username):
     return render(request, 'accounts/first_login.html', context)
 
 
+@login_required(login_url='login')
 def edit_user(request):
     context ={}
     return render(request, 'pages/users/edit.html', context)
 
+
+@login_required(login_url='login')
 def upgrade_user(request):
     context ={}
     return render(request, 'pages/users/upgrade.html', context)
 
+
+@login_required(login_url='login')
 def delete_user(request):
     context ={}
     return render(request, 'pages/users/delete.html', context)
 
+
+@login_required(login_url='login')
 def view_user(request):
     context ={}
     return render(request, 'pages/users/view.html', context)
 
+
+################################################################
+### GROUP CONFIG
+################################################################
+
+
+@login_required(login_url='login')
+def list_groups(request):
+    groups = Group.objects.all()
+    context = {
+        'groups': groups
+    }
+    return render(request, 'accounts/group/list.html', context)
+
+
+@login_required(login_url='login')
+def add_group(request):
+    form = GroupForm()
+    if request.method == 'POST':
+        form = GroupForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('list_groups')
+
+    context = {}
+    return render(request, 'accounts/group/add.html', context)
+
+    
+@login_required(login_url='login')
+def delete_group(request, id):
+    group = Group.objects.get(id=id)
+    group.delete()
+    return redirect('list_groups')

@@ -14,7 +14,6 @@ from accounts.decorators import *
 ### Agence list ###
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['manager'])
 def agence_list(request):
     agences = Agence.objects.all()
     context = {
@@ -24,6 +23,7 @@ def agence_list(request):
 
 ### ADDING AGENCE ###
 
+@login_required(login_url='login')
 def add_agence(request):
     form = AgenceForm()
     if request.method == 'POST':
@@ -38,6 +38,7 @@ def add_agence(request):
 
 ### EDITING AGENCE ###
 
+@login_required(login_url='login')
 def edit_agence(request, id):
     agence = Agence.objects.get(id=id)
     form = AgenceForm(
@@ -68,6 +69,7 @@ def edit_agence(request, id):
 
 ### DELETE AGENCE ###
 
+@login_required(login_url='login')
 def delete_agence(request, id):
     agence = Agence.objects.get(id=id)
     agence.delete()
@@ -76,6 +78,7 @@ def delete_agence(request, id):
 
 #### View Details Agence ###
 
+@login_required(login_url='login')
 def view_agence(request, id):
     agence = Agence.objects.get(id=id)
     context = {'agence': agence}
@@ -87,6 +90,7 @@ def view_agence(request, id):
 
 ### Site LISTE ###
 
+@login_required(login_url='login')
 def site_list(request):
     sites = Site.objects.all()
     context = {
@@ -96,6 +100,7 @@ def site_list(request):
 
 ### ADDING SITE ###
 
+@login_required(login_url='login')
 def add_site(request):
     agences = Agence.objects.all()
     form = SiteForm()
@@ -113,6 +118,7 @@ def add_site(request):
 
 ### EDITING SITE ###
 
+@login_required(login_url='login')
 def edit_site(request, id):
     agences = Agence.objects.all()
     site = Site.objects.get(id=id)
@@ -145,6 +151,7 @@ def edit_site(request, id):
 
 ### DELETE SITE ###
 
+@login_required(login_url='login')
 def delete_site(request, id):
     site = Site.objects.get(id=id)
     site.delete()
@@ -152,6 +159,7 @@ def delete_site(request, id):
 
 ### VIEW SITE ###
 
+@login_required(login_url='login')
 def view_site(request, id):
     site = Site.objects.get(id=id)
     context = {'site': site}
@@ -163,6 +171,7 @@ def view_site(request, id):
 
 ### LISTING CUSTOMERS ###
 
+@login_required(login_url='login')
 def list_abonne(request):
     abonnes = Abonne.objects.all()
     context = {
@@ -172,6 +181,7 @@ def list_abonne(request):
 
 ### ADDING CUSTOMERS ###
 
+@login_required(login_url='login')
 def add_abonne(request):
     agences = Agence.objects.all()
     form = AbonneForm()
@@ -187,6 +197,7 @@ def add_abonne(request):
 
 ### EDITING CUSTOMERS ###
 
+@login_required(login_url='login')
 def edit_abonne(request, id):
 
     abonne = Abonne.objects.get(id=id)
@@ -224,6 +235,7 @@ def edit_abonne(request, id):
 
 ### VIEWING CUSTOMERS ###
 
+@login_required(login_url='login')
 def view_abonne(request, id):
     abonne = Abonne.objects.get(id=id)
     context = {
@@ -233,6 +245,7 @@ def view_abonne(request, id):
 
 ### DELETING CUSTOMERS ###
 
+@login_required(login_url='login')
 def delete_abonne(request, id):
     abonne = Abonne.objects.get(id=id)
     abonne.delete()
@@ -240,12 +253,14 @@ def delete_abonne(request, id):
 
 ### IMPORTING ABONNE ###
 
+@login_required(login_url='login')
 def import_abonne(request):
     context = {}
     return render(request, 'pages/abonne/import.html', context)
 
 ### Export ABONNE ###
 
+@login_required(login_url='login')
 def export_abonne(request):
     context = {}
     return render(request, 'pages/abonne/export.html', context)

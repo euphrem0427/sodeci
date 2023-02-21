@@ -13,3 +13,10 @@ class SiteCollecteForm(ModelForm):
             "qte_filtre_air",
             "date_rplment_fitre_air",
             )
+
+class SettingForm(ModelForm):
+    
+    class Meta:
+        model = Setting
+        fields = ("title", "description",)
+

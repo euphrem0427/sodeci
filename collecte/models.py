@@ -22,6 +22,7 @@ class CustomerCollecte(models.Model):
         on_delete=models.CASCADE,
     )
     image = models.ImageField(_("Image"), upload_to='collecte/abonne')
+    date = models.DateTimeField(auto_now_add=True, null = True)
 
     class Meta:
         verbose_name = _("Collecte Client")
@@ -64,3 +65,59 @@ class SiteCollecte(models.Model):
 
     def get_absolute_url(self):
         return reverse("Site_Collecte_detail", kwargs={"pk": self.pk})
+
+
+class Setting(models.Model):
+
+    title = models.CharField(max_length=254, verbose_name=_("Nom du parametre"))
+    description = models.TextField(_("Description"), null=True, blank=True)
+
+    class Meta:
+        verbose_name = _("Setting")
+        verbose_name_plural = _("Settings")
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse("Setting_detail", kwargs={"pk": self.pk})
+
+class Maintenance(models.Model):
+
+    site = models.ForeignKey(
+        Site,
+        on_delete=models.CASCADE
+    )
+    
+    date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = _("Maintenance")
+        verbose_name_plural = _("Maintenances")
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("Maintenance_detail", kwargs={"pk": self.pk})
+
+
+class MaintenanceDetail(models.Model):
+
+    maintenance = models.ForeignKey(Maintenance, on_delete=models.CASCADE)
+    
+    setting = models.ForeignKey(
+        Setting,
+        on_delete=models.CASCADE
+    )
+    value = models.CharField(_("Valuer du paremetre"), max_length=254)
+
+    class Meta:
+        verbose_name = _("MaintenanceDetail")
+        verbose_name_plural = _("MaintenanceDetails")
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("MaintenanceDetail_detail", kwargs={"pk": self.pk})

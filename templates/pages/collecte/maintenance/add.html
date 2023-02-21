@@ -1,0 +1,50 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <form class="form-horizontal" method = "POST">
+                {% csrf_token %}
+                <div class="card-body">
+                    <h4 class="card-title text-center">Collecte sur {{site.title}}</h4>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Quantité de gazoil</label>
+                        <div class="col-sm-9">
+                            <input type="number" name="qte_gazoil" class="form-control" id="fname" placeholder="Quantité de gazoil en litre">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Date de rechargement du gasoil</label>
+                        <div class="col-sm-9">
+                            <input type="date" name="date_recharge" class="form-control" id="lname" placeholder="Quantité de chlore pour le traitement d’eau restant en stock">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Quantité de chlore</label>
+                        <div class="col-sm-9">
+                            <input type="number" name="qte_chlore" class="form-control" id="lname" placeholder="Quantité de chlore pour le traitement d’eau restant en stock">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Filtre à air</label>
+                        <div class="col-sm-9">
+                            <input type="number" name="qte_filtre_air" class="form-control" id="lname" placeholder="Filtre à air restant en stock">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Date de remplacement du filtre à air</label>
+                        <div class="col-sm-9">
+                            <input type="date" name="date_rplment_fitre_air" class="form-control" id="lname" placeholder="Filtre à air restant en stock">
+                        </div>
+                    </div>
+                </div>
+                <div class="border-top">
+                    <div class="card-body">
+                        <button type="submit" class="btn btn-success">Enregistrer</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
