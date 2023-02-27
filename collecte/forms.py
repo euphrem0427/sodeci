@@ -2,21 +2,20 @@ from .models import *
 from django.forms import *
 
 
-class SiteCollecteForm(ModelForm):
-    
-    class Meta:
-        model = SiteCollecte
-        fields = (
-            "qte_gazoil",
-            "date_recharge",
-            "qte_chlore",
-            "qte_filtre_air",
-            "date_rplment_fitre_air",
-            )
-
 class SettingForm(ModelForm):
     
     class Meta:
         model = Setting
         fields = ("title", "description",)
 
+class SettingSiteForm(ModelForm):
+    
+    class Meta:
+        model = SettingSite
+        fields = ("title", "description",)
+
+class CustomerCollecteForm(ModelForm):
+    
+    class Meta:
+        model = CustomerCollecte
+        fields = ("index", "image")

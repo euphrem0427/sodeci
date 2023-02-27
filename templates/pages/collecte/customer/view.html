@@ -1,0 +1,34 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <form class="form-horizontal" method = "POST">
+                {% csrf_token %}
+                <div class="card-body">
+                    <h4 class="card-title text-center">Information sur collecte</h4>
+                    
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Abonné</label>
+                        <div class="col-sm-9">
+                            <input type="text" disabled value="{{collect.abonne.first_name}} {{collect.abonne.last_name}}" class="form-control" id="fname" placeholder="Quantité de gazoil en litre">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Index</label>
+                        <div class="col-sm-9">
+                            <input type="text" disabled value="{{collect.index}}" class="form-control" id="fname" placeholder="Quantité de gazoil en litre">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Date</label>
+                        <div class="col-sm-9">
+                            <input type="text" disabled value="{{collect.date}}" class="form-control" id="fname" placeholder="Quantité de gazoil en litre">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

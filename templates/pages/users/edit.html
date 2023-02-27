@@ -1,0 +1,77 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <form class="form-horizontal" method="POST">
+                {% csrf_token %}
+                <div class="card-body">
+                    <h4 class="card-title">Information sur l'agent</h4>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Nom</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="last_name" class="form-control" id="fname" placeholder="Nom de l'agent">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Prénom</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="first_name" class="form-control" id="fname" placeholder="Prénom de l'agent">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="email1" class="col-sm-3 text-right control-label col-form-label">Email</label>
+                        <div class="col-sm-9">
+                            <input type="email" name="email" class="form-control" id="email1" placeholder="Adresse email">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Téléphone</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="phone" class="form-control" id="cono1" placeholder="Téléphone de l'agent">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Site</label>
+                        <div class="col-md-9">
+                            <select name="groups" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                {% for group in groups %}
+                                    <option value="{{group.id}}">{{group.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Agence</label>
+                        <div class="col-md-9">
+                            <select name="agence" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                <option>Selectionner</option>
+                                {% for agence in agences %}
+                                    <option value="{{agence.id}}">{{agence.title}}</option>
+                                {% endfor %}
+                            </select>
+                            
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Site</label>
+                        <div class="col-md-9">
+                            <select name="site" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                {% for site in sites %}
+                                    <option value="{{site.id}}">{{site.title}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="border-top">
+                    <div class="card-body">
+                        <button type="submit" class="btn btn-success">Enregistrer</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

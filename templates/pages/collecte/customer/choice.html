@@ -11,7 +11,7 @@
                     <table id="zero_config" class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>Identifiant</th>
+                                {% comment %} <th></th> {% endcomment %}
                                 <th>Nom</th>
                                 <th>Agence</th>
                                 <th>Adresse</th>
@@ -19,14 +19,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for site in sites %}
+                            {% for user in customers %}
                             <tr>
-                                <td>{{site.code}}</td>
-                                <td>{{site.title}}</td>
-                                <td>{{site.agence.title}}</td>
-                                <td>{{site.adresse}}</td>
+                                {% comment %}
+                                    <td>{{site.code}}</td>
+                                {% endcomment %}
+                                <td>{{user.first_name}} {{user.last_name}}</td>
+                                <td>{{user.agence.title}}</td>
+                                <td>{{user.adresse}}</td>
                                 <td>
-                                    <a href="/create_site_collect/{{site.id}}" class="btn btn-success m-1">Choisir <i class=" fas fa-arrow-circle-right "></i></a>
+                                    <a href="/add_customer_collecte/{{user.id}}/" class="btn btn-success m-1">Choisir <i class=" fas fa-arrow-circle-right "></i></a>
                                 </td>
                             </tr>
                             {% endfor %}

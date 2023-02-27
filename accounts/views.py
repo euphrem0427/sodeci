@@ -56,6 +56,7 @@ def list_users(request):
 
 @login_required(login_url='login')
 def add_user(request):
+    groups = Group.objects.all()
     sites = Site.objects.all()
     agences = Agence.objects.all()
     form = UserForm()
@@ -66,6 +67,10 @@ def add_user(request):
             user.username = username_generator()
             email = form.cleaned_data['email']
             user.save()
+            groups = form.cleaned_data['groups']        
+            groups.user_set.add(user)
+            site = form.cleaned_data['site']
+            user.site.add(site)
 
             subject = "Création de compte"
             email_template_name = "partials/mails/user_creation.html"
@@ -88,6 +93,7 @@ def add_user(request):
     context ={
         'sites':sites,
         'agences':agences,
+        'groups':groups,
     }
     return render(request, 'pages/users/add.html', context)
 
@@ -107,26 +113,77 @@ def first_login(request, username):
 
 
 @login_required(login_url='login')
-def edit_user(request):
+def edit_user(request, id):
+    user = User.objects.get(id=id)
+    form = EditUserForm(
+        instance = user,
+        initial = {
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'email': user.email,
+            'phone': user.phone,
+        }
+    )
+    if request.method == 'POST':
+        form = EditUserForm(
+            request.POST,
+            instance = user,
+            initial = {
+                'first_name': user.first_name,
+                'last_name': user.last_name,
+                'email': user.email,
+                'phone': user.phone,
+            }
+        )
+        if form.is_valid():
+            form.save()
+            return redirect('list_users')
     context ={}
     return render(request, 'pages/users/edit.html', context)
 
 
 @login_required(login_url='login')
-def upgrade_user(request):
+def upgrade_user(request, id):
+    user = User.objects.get(id=id)
+    form = UpgradeUserForm(
+        instance = user,
+        initial = {
+            'agence': user.agence,
+            'site': user.site,
+            'groups': user.groups,
+        }
+    )
+    if request.method == 'POST':
+        form = UpgradeUserForm(
+            request.POST,
+            instance = user,
+            initial = {
+                'agence': user.agence,
+                'site': user.site,
+                'groups': user.groups,
+            }
+        )
+        if form.is_valid():
+            form.save()
+            return redirect('list_users')
     context ={}
     return render(request, 'pages/users/upgrade.html', context)
 
 
 @login_required(login_url='login')
-def delete_user(request):
-    context ={}
-    return render(request, 'pages/users/delete.html', context)
+def delete_user(request,id):
+    user = User.objects.get(id=id)
+    user.delete()
+    return redirect('list_users')
+    
 
 
 @login_required(login_url='login')
-def view_user(request):
-    context ={}
+def view_user(request, id):
+    user = User.objects.get(id=id)
+    context ={
+        'user': user
+    }
     return render(request, 'pages/users/view.html', context)
 
 

@@ -1,0 +1,59 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <form class="form-horizontal" method="POST">
+                {% csrf_token %}
+                <div class="card-body">
+                    <h4 class="card-title">Information sur l'agent</h4>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Nom</label>
+                        <div class="col-sm-9">
+                            <input type="text" disabled value="{{user.last_name}}" class="form-control" id="fname" placeholder="Nom de l'agent">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Prénom</label>
+                        <div class="col-sm-9">
+                            <input type="text" disabled value="{{user.first_name}}" class="form-control" id="fname" placeholder="Prénom de l'agent">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="email1" class="col-sm-3 text-right control-label col-form-label">Email</label>
+                        <div class="col-sm-9">
+                            <input type="email" disabled value="{{user.email}}" class="form-control" id="email1" placeholder="Adresse email">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Téléphone</label>
+                        <div class="col-sm-9">
+                            <input type="text" disabled value="{{user.phone}}" class="form-control" id="cono1" placeholder="Téléphone de l'agent">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Rôle</label>
+                        <div class="col-md-9">
+                            <input type="text" disabled value="{% for group in user.groups.all %}{{group.name}}{% endfor %}" class="form-control" id="cono1" placeholder="Aucun">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Agence</label>
+                        <div class="col-md-9">
+                            <input type="text" disabled value="{{user.agence}}" class="form-control" id="cono1" placeholder="Téléphone de l'agent">
+                            
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Site</label>
+                        <div class="col-md-9">
+                            <input type="text" disabled value="{% for site in user.site.all %}{{site.title}}{% endfor %}" class="form-control" id="cono1" placeholder="Téléphone de l'agent">
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

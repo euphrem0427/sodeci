@@ -188,7 +188,7 @@
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'list_abonne' %}" aria-expanded="false"><i class="fas fa-users"></i><span class="hide-menu"> Abonnées</span></a></li>
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Collectes </span></a>
                     <ul aria-expanded="false" class="collapse  first-level">
-                        <li class="sidebar-item"><a href="#ab" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Abonnées </span></a></li>
+                        <li class="sidebar-item"><a href="{% url 'list_customer_collecte' %}" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Abonnées </span></a></li>
                         <li class="sidebar-item"><a href="{% url 'site_collect_list' %}" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Site </span></a></li>
                         <li class="sidebar-item"><a href="{% url 'list_maintenance' %}" class="sidebar-link"><i class=" fas fa-check-circle"></i><span class="hide-menu"> Maintenance </span></a></li>
                     </ul>
@@ -199,7 +199,12 @@
                         <li class="sidebar-item"><a href="{% url 'list_groups' %}" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Profils </span></a></li>
                     </ul>
                 </li>
-                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'list_setting' %}" aria-expanded="false"><i class="fas fa-cogs"></i><span class="hide-menu">Paramètres</span></a></li>
+                <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-cogs"></i><span class="hide-menu">Paramètres </span></a>
+                    <ul aria-expanded="false" class="collapse  first-level">
+                        <li class="sidebar-item"><a href="{% url 'list_site_setting' %}" class="sidebar-link"><i class="fa fa-cog"></i><span class="hide-menu"> Site </span></a></li>
+                        <li class="sidebar-item"><a href="{% url 'list_setting' %}" class="sidebar-link"><i class="fa fa-cog"></i><span class="hide-menu"> Maintenance </span></a></li>
+                    </ul>
+                </li>
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'stats' %}" aria-expanded="false"><i class="fas fa-chart-line"></i><span class="hide-menu">Satitistiques </span></a></li>
                 
             </ul>

@@ -30,9 +30,8 @@
                                 <td>{{maintenance.agent.first_name}} {{maintenance.agent.last_name}}</td>
                                 <td>{{maintenance.date}}</td>
                                 <td>
-                                    <a href="#v" class="btn btn-success m-1"><i class="fas fa-eye"></i></a>
-                                    <a href="#add" class="btn btn-primary m-1"><i class="fas fa-edit"></i></a>
-                                    <a href="#add" class="btn btn-danger m-1"><i class="fas fa-trash"></i></a>
+                                    <a href="/view_maintenance/{{maintenance.id}}/" class="btn btn-success m-1"><i class="fas fa-eye"></i></a>
+                                    <a href="/delete_maintenance/{{maintenance.id}}/" class="btn btn-danger m-1"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
                             {% endfor %}

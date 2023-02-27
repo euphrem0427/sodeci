@@ -7,49 +7,15 @@
                 {% csrf_token %}
                 <div class="card-body">
                     <h4 class="card-title text-center">Collecte sur {{collect.site.title}}</h4>
-                    <div class="form-group row">
-                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Site concerné</label>
-                        <div class="col-sm-9">
-                            <input type="text" disabled value="{{collect.site.title}}" class="form-control" id="fname" placeholder="Quantité de gazoil en litre">
+                    {% for detail in details %}
+                        <div class="form-group row">
+                            <label for="fname" class="col-sm-3 text-right control-label col-form-label">{{detail.setting.title}}</label>
+                            <div class="col-sm-9">
+                                <input type="text" disabled value="{{detail.value}}" class="form-control" id="fname" placeholder="Quantité de gazoil en litre">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Date de la collete</label>
-                        <div class="col-sm-9">
-                            <input type="text" disabled value="{{collect.date_collecte}}" class="form-control" id="fname" placeholder="Quantité de gazoil en litre">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Quantité de gasoil mise dans le groupe électrogène</label>
-                        <div class="col-sm-9">
-                            <input type="text" disabled value="{{collect.qte_gazoil}}"  class="form-control" id="fname" placeholder="Quantité de gazoil en litre">
-                        </div>
-                    </div>
+                    {% endfor %}
                     
-                    <div class="form-group row">
-                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Date de rechargement du gasoil</label>
-                        <div class="col-sm-9">
-                            <input type="text" disabled value="{{collect.date_recharge}}" class="form-control" id="lname" placeholder="Quantité de chlore pour le traitement d’eau restant en stock">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Quantité de chlore pour le traitement d’eau restant en stock</label>
-                        <div class="col-sm-9">
-                            <input type="text" disabled value="{{collect.qte_chlore}}"  class="form-control" id="fname" placeholder="Quantité de gazoil en litre">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Filtre à air restant en stock</label>
-                        <div class="col-sm-9">
-                            <input type="text" disabled value="{{collect.qte_filtre_air}}"  class="form-control" id="lname" placeholder="Filtre à air restant en stock">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Date de remplacement du filtre à air</label>
-                        <div class="col-sm-9">
-                            <input type="text" disabled value="{{collect.date_rplment_fitre_air}}"  class="form-control" id="lname" placeholder="Filtre à air restant en stock">
-                        </div>
-                    </div>
                 </div>
             </form>
         </div>
