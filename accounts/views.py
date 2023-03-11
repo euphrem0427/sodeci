@@ -13,6 +13,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.core.mail import send_mail, BadHeaderError
 from app.models import *
 from django.contrib.auth.models import Group
+from django.db.models import Q
 # Create your views here.
 
 @login_required(login_url='login')
@@ -42,7 +43,33 @@ def logout(request):
     return redirect('login')
 
 def reset_password(request):
-    return render(request, 'accounts/login.html')
+    if request.POST:
+        username = request.POST['username']
+        try:
+            user = User.objects.get(Q(email=username) | Q(phone=username))
+        except User.DoesNotExist:
+            return None
+        else:
+            email = user.email
+            subject = "Modifiacation de mot de passe"
+            email_template_name = "partials/mails/user_creation.html"
+            ctxt = {
+                "name": user.first_name,
+                "link": "http://127.0.0.1:8000/accounts/set_password/" + str(user.username) + "/"
+            }
+            html_message = render_to_string(email_template_name, ctxt)
+            plain_message = strip_tags(html_message)
+            mail = EmailMultiAlternatives(
+                subject,
+                plain_message,
+                'OMILAYE <euphrem0427@gmail.com>' ,
+                [email]
+            )
+            mail.attach_alternative(html_message, 'text/html')
+            mail.send()
+
+
+    return render(request, 'accounts/reset_password.html')
 
 
 @login_required(login_url='login')

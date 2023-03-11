@@ -298,14 +298,14 @@ def export_abonne(request):
 ################################################################
 ## Département & Commune
 ################################################################    
-
+@login_required(login_url='login')
 def list_departement(request):
     departements = Departement.objects.all()
     context = {
         'departements': departements
     }
     return render(request, 'pages/setting/departement/list.html', context)
-
+@login_required(login_url='login')
 def add_departement(request):
     form = DepartementForm()
     if request.method == 'POST':
@@ -315,7 +315,7 @@ def add_departement(request):
             return redirect('list_departement')
         
     return render(request, 'pages/setting/departement/add.html')
-
+@login_required(login_url='login')
 def view_departement(request, id):
     departement = Departement.objects.get(id=id)
     context = {
@@ -323,21 +323,21 @@ def view_departement(request, id):
     }
     return render(request, 'pages/setting/departement/view.html', context)
 
-
+@login_required(login_url='login')
 def delete_departement(request, id):
     departement = Departement.objects.get(id=id)
     departement.delete()
     return redirect('list_departement')
 
 
-
+@login_required(login_url='login')
 def list_commune(request):
     communes = Commune.objects.all()
     context = {
         'communes': communes
     }
     return render(request, 'pages/setting/commune/list.html', context)
-
+@login_required(login_url='login')
 def add_commune(request):
     departements = Departement.objects.all()
     form = CommuneForm()
@@ -348,14 +348,14 @@ def add_commune(request):
             return redirect('list_commune')
     context = {'departements': departements}
     return render(request, 'pages/setting/commune/add.html', context)
-
+@login_required(login_url='login')
 def view_commune(request, id):
     commune = Commune.objects.get(id=id)
     context = {
         'commune': commune
     }
     return render(request, 'pages/setting/commune/view.html', context)
-
+@login_required(login_url='login')
 def delete_commune(request, id):
     commune = Commune.objects.get(id=id)
     commune.delete()
