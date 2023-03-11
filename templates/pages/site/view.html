@@ -6,12 +6,30 @@
             <form method = "POST" class="form-horizontal">
                 {% csrf_token %}
                 <div class="card-body">
-                    <h4 class="card-title">Information sur le site</h4>
+                    <h4 class="card-title">Information sur l'unité de production</h4>
                     <div class="form-group row">
                         <label for="fname" class="col-sm-3 text-right control-label col-form-label">Agence</label>
                         <div class="col-md-9">
                             <select name="agence" disabled class="select2 form-control custom-select" style="width: 100%; height:36px;">
                                 <option>{{site.agence}}</option>
+                            </select>
+                            
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Département</label>
+                        <div class="col-md-9">
+                            <select name="agence" disabled class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                <option>{{site.departement.name}}</option>
+                            </select>
+                            
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Commune</label>
+                        <div class="col-md-9">
+                            <select name="agence" disabled class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                <option>{{site.commune}}</option>
                             </select>
                             
                         </div>

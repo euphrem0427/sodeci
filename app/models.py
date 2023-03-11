@@ -2,6 +2,8 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
 from django.urls import reverse
+from agence.models import *
+
 # Create your models here.
 
 
@@ -13,6 +15,12 @@ class Agence(models.Model):
     adresse = models.CharField(_('Adresse'), null=True, blank=True, max_length=255)
     phone = PhoneNumberField(_('Contact'), null = True, blank = True)
     email  = models.EmailField(_('Email'), null = True, blank = True)
+    departement = models.ForeignKey(
+        Departement,
+        on_delete = models.CASCADE,
+        null = True, 
+        blank = True
+        )
 
 
     class Meta:
@@ -38,7 +46,19 @@ class Site(models.Model):
     code = models.CharField(_('Code'), max_length=100, unique=True)
     description = models.TextField(_('Description'), null=True, blank=True)
     adresse = models.CharField(_('Adresse'), null=True, blank=True, max_length=255)
+    departement = models.ForeignKey(
+        Departement,
+        on_delete = models.CASCADE,
+        null = True, 
+        blank = True
+        )
 
+    commune = models.ForeignKey(
+        Commune,
+        on_delete = models.CASCADE,
+        null = True, 
+        blank = True
+        )
     class Meta:
         verbose_name = _("Site")
         verbose_name_plural = _("Sites")
@@ -57,6 +77,20 @@ class Abonne(models.Model):
         on_delete = models.CASCADE,
         verbose_name = _('Agence'),
     )
+
+    departement = models.ForeignKey(
+        Departement,
+        on_delete = models.CASCADE,
+        null = True, 
+        blank = True
+        )
+
+    commune = models.ForeignKey(
+        Commune,
+        on_delete = models.CASCADE,
+        null = True, 
+        blank = True
+        )
 
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)

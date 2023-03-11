@@ -17,6 +17,24 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Département</label>
+                        <div class="col-md-9">
+                            <select name="agence" disabled class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                <option>{{abonne.departement.name}}</option>
+                            </select>
+                            
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Commune</label>
+                        <div class="col-md-9">
+                            <select name="agence" disabled class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                <option>{{abonne.commune}}</option>
+                            </select>
+                            
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="fname" class="col-sm-3 text-right control-label col-form-label">Nom</label>
                         <div class="col-sm-9">
                             <input type="text" value="{{abonne.first_name}}" disabled name="first_name" class="form-control" id="fname" placeholder="Nom de l'abonnée">

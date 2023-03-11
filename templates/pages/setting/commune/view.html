@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <form class="form-horizontal" method="POST">
+                {% csrf_token %}
+                <div class="card-body">
+                    <h4 class="card-title">Information sur la commune</h4>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Nom</label>
+                        <div class="col-sm-9">
+                            <input type="text" disabled value="{{commune.name}}" name="name" class="form-control" id="fname" placeholder="Nom du paramètré">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Département</label>
+                        <div class="col-sm-9">
+                            <input type="text" disabled value="{{commune.departement}}" name="name" class="form-control" id="fname" placeholder="Nom du paramètré">
+                        </div>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

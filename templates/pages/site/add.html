@@ -6,7 +6,7 @@
             <form method = "POST" class="form-horizontal">
                 {% csrf_token %}
                 <div class="card-body">
-                    <h4 class="card-title">Information sur le site</h4>
+                    <h4 class="card-title">Information sur l'unité de production</h4>
                     <div class="form-group row">
                         <label for="fname" class="col-sm-3 text-right control-label col-form-label">Agence</label>
                         <div class="col-md-9">
@@ -14,6 +14,30 @@
                                 <option>Selectionner</option>
                                 {% for agence in agences %}
                                     <option value="{{agence.id}}">{{agence.title}}</option>
+                                {% endfor %}
+                            </select>
+                            
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Département</label>
+                        <div class="col-md-9">
+                            <select name="departement" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                <option>Selectionner</option>
+                                {% for departement in departements %}
+                                    <option value="{{departement.id}}">{{departement.name}}</option>
+                                {% endfor %}
+                            </select>
+                            
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Commune</label>
+                        <div class="col-md-9">
+                            <select name="commune" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                <option>Selectionner</option>
+                                {% for commune in communes %}
+                                    <option value="{{commune.id}}">{{commune.name}}</option>
                                 {% endfor %}
                             </select>
                             
