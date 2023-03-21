@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <form method = "POST" class="form-horizontal">
+            <form method ="POST" class="form-horizontal" id="formAdd">
                 {% csrf_token %}
                 <div class="card-body">
                     <h4 class="card-title">Information sur l'unité de production</h4>
@@ -35,10 +35,7 @@
                         <label for="fname" class="col-sm-3 text-right control-label col-form-label">Commune</label>
                         <div class="col-md-9">
                             <select name="commune" class="select2 form-control custom-select" style="width: 100%; height:36px;">
-                                <option>Selectionner</option>
-                                {% for commune in communes %}
-                                    <option value="{{commune.id}}">{{commune.name}}</option>
-                                {% endfor %}
+                                <option class="after">Selectionner</option>
                             </select>
                             
                         </div>

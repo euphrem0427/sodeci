@@ -32,6 +32,7 @@ urlpatterns = [
     path('view_departement/<int:id>/', view_departement),
 
     path('list_commune', list_commune, name = 'list_commune'),
+    path('departement/list_communes/<str:departement>', get_commune, name = 'list_communes'),
     path('add_commune', add_commune, name = 'add_commune'),
     path('delete_commune/<int:id>/', delete_commune),
     path('view_commune/<int:id>/', view_commune),

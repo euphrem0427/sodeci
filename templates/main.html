@@ -47,7 +47,21 @@
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
-             {% include 'partials/breadcrumb.html' %}
+            <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center">
+                        <h4 class="page-title">{% block page%}{% endblock page%}</h4>
+                        <div class="ml-auto text-right">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">{% block preview_page%}Tableau de bord{% endblock preview_page%}</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">{% block actual_page%}{% endblock actual_page%}</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- ============================================================== -->
             <!-- End Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
@@ -87,6 +101,7 @@
     <script src="{% static 'dist/js/sidebarmenu.js' %}"></script>
     <!--Custom JavaScript -->
     <script src="{% static 'dist/js/custom.min.js' %}"></script>
+    <script src="{% static 'dist/js/main.js' %}"></script>
     <!--This page JavaScript -->
     <!-- <script src="{% static 'dist/js/pages/dashboards/dashboard1.js"></script> -->
     <!-- Charts js Files -->

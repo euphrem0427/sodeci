@@ -10,7 +10,8 @@
                     {% for set in settings %}
                     <div class="form-group row">
                         <label for="fname" class="col-sm-3 text-right control-label col-form-label">{{set.title}}</label>
-                        <div class="col-sm-9">
+                        <input type="checkbox" name="is_exist{{set.id}}" id="check" class="form-control col-sm-2">
+                        <div class="col-sm-7">
                             <input type="text" name="{{set.id}}" class="form-control" id="fname" placeholder="{{set.title}}">
                         </div>
                     </div>

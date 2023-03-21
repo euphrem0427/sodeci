@@ -10,8 +10,10 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <a href="{% url 'add_setting' %}" class="btn btn-primary float-right mb-2">Ajouter un paramètre</a>
-                <h5 class="card-title">Liste des paramètres de maintenance</h5>
+                <div class="d-flex justify-content-between mb-2">
+                    <h5 class="card-title">Paramètres</h5>
+                    <a href="{% url 'add_setting' %}" class="btn btn-primary ">Ajouter un paramètre</a>
+                </div>
                 <div class="table-responsive">
                     <table id="zero_config" class="table table-striped table-bordered">
                         <thead>

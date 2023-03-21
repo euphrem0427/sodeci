@@ -10,8 +10,11 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <a href="{% url 'add_site' %}" class="btn btn-primary float-right mb-2">Ajouter une unité</a>
-                <h5 class="card-title">Liste des unités de production</h5>
+                <div class="d-flex justify-content-between mb-2">
+                    <h5 class="card-title">Unités de production</h5>
+                    <a href="{% url 'add_site' %}" class="btn btn-primary ">Ajouter une unité</a>
+                </div>
+                
                 <div class="table-responsive">
                     <table id="zero_config" class="table table-striped table-bordered">
                         <thead>

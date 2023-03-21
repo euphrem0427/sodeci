@@ -4,7 +4,8 @@ from .forms import *
 from .utils import *
 from django.contrib.auth.decorators import login_required
 from accounts.decorators import *
-# Create your views here.
+from django.http import JsonResponse
+# Create your views here
 
 
 ########################################################################
@@ -360,3 +361,23 @@ def delete_commune(request, id):
     commune = Commune.objects.get(id=id)
     commune.delete()
     return redirect('list_commune')
+
+"""Commune based on department"""
+
+def get_commune(request,departement):
+    try:
+        departement = Departement.objects.get(id=departement)
+    except:
+        return JsonResponse({
+            'ok':'False',
+            'error':'Department not exist',
+        })
+    
+    communes = Commune.objects.filter(departement=departement).values('id','name')
+    if communes:
+        return JsonResponse({'data':list(communes)},safe=False)
+    else:
+        return JsonResponse({
+            'ok':'True',
+            'msg':'Commune not exist for this department',
+        })

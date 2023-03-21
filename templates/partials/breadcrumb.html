@@ -1,12 +1,12 @@
 <div class="page-breadcrumb">
     <div class="row">
         <div class="col-12 d-flex no-block align-items-center">
-            <h4 class="page-title">Page title</h4>
+            <h4 class="page-title">{% block page%}{% endblock page%}</h4>
             <div class="ml-auto text-right">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Tableau de bord</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Page</li>
+                        <li class="breadcrumb-item"><a href="#">{% block preview_page%}Tableau de bord{% endblock preview_page%}</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{% block actual_page%}{% endblock actual_page%}</li>
                     </ol>
                 </nav>
             </div>
