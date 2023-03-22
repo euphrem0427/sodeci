@@ -6,41 +6,150 @@
             <form class="form-horizontal" method = "POST">
                 {% csrf_token %}
                 <div class="card-body">
-                    <h4 class="card-title text-center">Collecte sur {{site.title}}</h4>
+                    <h4 class="card-title text-center">Collecte sur {{site.title}} par {{request.user.first_name}}</h4>
                     <div class="form-group row">
-                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Quantité de gazoil</label>
-                        <div class="col-sm-9">
-                            <input type="number" name="qte_gazoil" class="form-control" id="fname" placeholder="Quantité de gazoil en litre">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Solaire</label>
+                        <div class="col-sm-2"> 
+                            <input type="checkbox" name="check_solaire" id="checksolaire" class="form-control mt-2">
+                        </div>
+                        <div class="col-sm-7">
+                            <input type="text" name="solaire" class="form-control" id="solaire" placeholder="Solaire">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Date de rechargement du gasoil</label>
-                        <div class="col-sm-9">
-                            <input type="date" name="date_recharge" class="form-control" id="lname" placeholder="Quantité de chlore pour le traitement d’eau restant en stock">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Groupe électrogène</label>
+                        <div class="col-sm-2">
+                            <input type="checkbox" name="check_groupe_electro" id="checkgroupe" class="form-control mt-2">
+                        </div>
+                        <div class="col-sm-7">
+                            <input type="text" name="groupe_electro" class="form-control" id="groupe" placeholder="Groupe électrogène">
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Quantité de chlore</label>
-                        <div class="col-sm-9">
-                            <input type="number" name="qte_chlore" class="form-control" id="lname" placeholder="Quantité de chlore pour le traitement d’eau restant en stock">
-                        </div>
+                <div class="form-group row">
+                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Index de départ</label>
+                    <div class="col-sm-2">
+                        <input type="checkbox" name="check_index_depart" id="checkIndex" class="form-control mt-2">
                     </div>
-                    <div class="form-group row">
-                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Filtre à air</label>
-                        <div class="col-sm-9">
-                            <input type="number" name="qte_filtre_air" class="form-control" id="lname" placeholder="Filtre à air restant en stock">
-                        </div>
+                    <div class="col-sm-7">
+                        <input type="number" name="index_depart" class="form-control" id="Index" placeholder="Index de départ">
                     </div>
-                    <div class="form-group row">
-                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Date de remplacement du filtre à air</label>
-                        <div class="col-sm-9">
-                            <input type="date" name="date_rplment_fitre_air" class="form-control" id="lname" placeholder="Filtre à air restant en stock">
-                        </div>
+                </div>
+                <div class="form-group row">
+                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Production</label>
+                    <div class="col-sm-2">
+                        <input type="checkbox" name="check_production" id="checkproduction" class="form-control mt-2">
+                    </div>
+                    <div class="col-sm-7">
+                        <input type="text" name="production" class="form-control" id="Production" placeholder="Production">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">SBEE</label>
+                    <div class="col-sm-2">
+                        <input type="checkbox" name="check_sbee" id="checksbee" class="form-control mt-2">
+                    </div>
+                    <div class="col-sm-7">
+                        <input type="text" name="sbee" class="form-control" id="Sbee" placeholder="SBEE">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Qualité de l'eau</label>
+                    <div class="col-sm-2">
+                        <input type="checkbox" name="check_water" id="checkwaterwQT" class="form-control mt-2">
+                    </div>
+                    <div class="col-sm-7">
+                        <button type="button" id="water" class="btn btn-primary margin-5 text-white " data-toggle="modal" data-target="#water_quality">
+                            Remplir
+                        </button>
+                    </div>
+                </div>
+                <div class="modal fade" id="water_quality" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <form class="form-horizontal" method="POST">
+                            {% csrf_token %}
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Information sur la qualité de l'eau</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group row">
+                                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">PH sur site</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="ph_in_site" class="form-control" id="fname">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Humidité sur site</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="humidity_in_site" class="form-control" id="fname">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Chlore sur site</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="chlore_in_site" class="form-control" id="fname">
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group row">
+                                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">PH hors site</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="ph_out_site" class="form-control" id="fname">
+                                        </div>
+                                    </div><div class="form-group row">
+                                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Humidité hors site</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="humidity_out_site" class="form-control" id="fname">
+                                        </div>
+                                    </div><div class="form-group row">
+                                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Chlore hors site</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="chlore_out_site" class="form-control" id="fname">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                    <button type="submit" class="btn btn-primary">Sauvegarder</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Observation</label>
+                    <div class="col-sm-2">
+                        <input type="checkbox" name="check_observation" id="checkobservation" class="form-control mt-2">
+                    </div>  
+                    <div class="col-sm-7">
+                        <textarea name="observation" class="form-control" id="Observation"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Nombre de panne</label>
+                    <div class="col-sm-2">
+                        <input type="checkbox" name="check_panne" id="checknbrpanne" class="form-control mt-2">
+                    </div>
+                    <div class="col-sm-7">
+                        <input type="text" name="nbre_panne" class="form-control mb-2" id="nbrepanne" placeholder="Nombre de panne">
+                        <textarea name="description_panne" class="form-control disabled" id="pannedesc"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Production estimée</label>
+                    <div class="col-sm-2">
+                        <input type="checkbox" name="check_estimate" id="checkprod" class="form-control mt-2">
+                    </div>
+                    <div class="col-sm-7">
+                        <input type="text" name="production_estimer" class="form-control" id="prod" placeholder="Production estimiée">
                     </div>
                 </div>
                 <div class="border-top">
                     <div class="card-body">
-                        <button type="submit" class="btn btn-success">Enregistrer</button>
+                        <button type="submit" class="btn btn-success enr">Enregistrer</button>
                     </div>
                 </div>
             </form>

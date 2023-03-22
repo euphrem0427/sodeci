@@ -55,7 +55,7 @@ def reset_password(request):
             email_template_name = "partials/mails/user_creation.html"
             ctxt = {
                 "name": user.first_name,
-                "link": "http://127.0.0.1:8000/accounts/set_password/" + str(user.username) + "/"
+                "link": "http://omilaye.it-servicegroup.com/accounts/set_password/" + str(user.username) + "/"
             }
             html_message = render_to_string(email_template_name, ctxt)
             plain_message = strip_tags(html_message)
@@ -67,6 +67,7 @@ def reset_password(request):
             )
             mail.attach_alternative(html_message, 'text/html')
             mail.send()
+            return redirect('login')
 
 
     return render(request, 'accounts/reset_password.html')
@@ -83,6 +84,8 @@ def list_users(request):
 
 @login_required(login_url='login')
 def add_user(request):
+    communes = Commune.objects.all()
+    departements = Departement.objects.all()
     groups = Group.objects.all()
     sites = Site.objects.all()
     agences = Agence.objects.all()
@@ -103,7 +106,7 @@ def add_user(request):
             email_template_name = "partials/mails/user_creation.html"
             ctxt = {
                 "name": user.first_name,
-                "link": "http://127.0.0.1:8000/accounts/set_password/" + str(user.username) + "/"
+                "link": "http://omilaye.it-servicegroup.com/accounts/set_password/" + str(user.username) + "/"
             }
             html_message = render_to_string(email_template_name, ctxt)
             plain_message = strip_tags(html_message)
@@ -121,6 +124,8 @@ def add_user(request):
         'sites':sites,
         'agences':agences,
         'groups':groups,
+        'communes':communes,
+        'departements':departements,
     }
     return render(request, 'pages/users/add.html', context)
 

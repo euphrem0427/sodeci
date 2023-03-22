@@ -11,8 +11,11 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <a href="{% url 'choice_customer' %}" class="btn btn-primary float-right mb-2">Nouvelle collecte</a>
-                <h5 class="card-title">Collecte chez un abonné </h5>
+                <div class="d-flex justify-content-between mb-2">
+                    <h5 class="card-title">Collecte chez les abonnés</h5>
+                    <a href="{% url 'choice_customer' %}" class="btn btn-primary ">Nouvelle collecte</a>
+                </div>
+                
                 <div class="table-responsive">
                     <table id="zero_config" class="table table-striped table-bordered">
                         <thead>
@@ -24,14 +27,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for collect in collects %}
+                            {% for collect in customer_collectes %}
                             <tr>
                                 <td>{{collect.abonne.first_name}} {{collect.abonne.last_name}}</td>
                                 <td>{{collect.index}}</td>
                                 <td>{{collect.date}}</td>
                                 <td>
-                                    <a href="/view_customer_collecte/{{maintenance.id}}/" class="btn btn-success m-1"><i class="fas fa-eye"></i></a>
-                                    <a href="/delete_customer_collecte/{{maintenance.id}}/" class="btn btn-danger m-1"><i class="fas fa-trash"></i></a>
+                                    <a href="/view_customer_collecte/{{collect.id}}/" class="btn btn-success m-1"><i class="fas fa-eye"></i></a>
+                                    <a href="/delete_customer_collecte/{{collect.id}}/" class="btn btn-danger m-1"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
                             {% endfor %}

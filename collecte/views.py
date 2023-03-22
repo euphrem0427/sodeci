@@ -4,6 +4,7 @@ from app.models import *
 from .forms import *
 from django.contrib.auth.decorators import login_required
 from accounts.decorators import *
+from django.utils.datastructures import MultiValueDictKeyError
 # Create your views here.
 
 
@@ -15,7 +16,7 @@ from accounts.decorators import *
 
 @login_required(login_url='login')
 def site_collect_list(request):
-    collectes = SiteCollecte.objects.all()
+    collectes = CollectOnSite.objects.all()
     context = {
         'collectes': collectes
     }
@@ -30,41 +31,76 @@ def choice_site_collect(request):
     }
     return render(request, 'pages/collecte/site/choice_site.html', context)
 
+# @login_required(login_url='login')
+# def create_site_collect(request, id):
+#     site = Site.objects.get(id=id)
+    
+#     site_collecte = SiteCollecte.objects.create(
+#         site = site,
+#         agent = request.user
+#     )
+#     url = '/add_site_collect/' + str(site_collecte.id) + '/'
+#     return redirect(url)
+
+# @login_required(login_url='login')
+# def add_site_collect(request, id):
+#     site = Site.objects.get(id=id)
+    
+#     settings = SettingSite.objects.all()
+#     if request.POST:
+#         site_collecte = SiteCollecte.objects.create(
+#         site = site,
+#         agent = request.user
+#         )
+#         for setting in settings:
+#             value = request.POST[str(setting.id)]
+#             try:
+#                 is_exist = request.POST['is_exist'+str(setting.id)]
+#                 is_exist = True
+#             except MultiValueDictKeyError:
+#                 is_exist = False
+            
+#             SiteCollecteDetail.objects.create(
+#                 site_collecte = site_collecte,
+#                 setting = setting,
+#                 value = value,
+#                 is_exist = is_exist
+#                 )
+            
+#         return redirect('site_collect_list')
+
+#     context={
+#         'settings': settings
+#     }
+#     return render(request, 'pages/collecte/maintenance/add.html', context)
+
 @login_required(login_url='login')
-def create_site_collect(request, id):
+def add_collect_on_site(request, id):
     site = Site.objects.get(id=id)
-    
-    site_collecte = SiteCollecte.objects.create(
-        site = site,
-        agent = request.user
-    )
-    url = '/add_site_collect/' + str(site_collecte.id) + '/'
-    return redirect(url)
-
-@login_required(login_url='login')
-def add_site_collect(request, id):
-    site_collecte = SiteCollecte.objects.get(id=id)
-    
-    settings = SettingSite.objects.all()
-    if request.POST:
-        for setting in settings:
-            value = request.POST[str(setting.id)]
-            SiteCollecteDetail.objects.create(
-                site_collecte = site_collecte,
-                setting = setting,
-                value = value
-            )
-        return redirect('site_collect_list')
-
-    context={
-        'settings': settings
-    }
-    return render(request, 'pages/collecte/maintenance/add.html', context)
+    water = None
+    water_form = WaterQualityForm()
+    form = CollectOnSiteForm()
+    if request.method == 'POST':
+        if 'ph_in_site' in request.POST:
+            water_form = WaterQualityForm(request.POST)
+            if water_form.is_valid():
+                water = water_form.save()
+        else:
+            form = CollectOnSiteForm(request.POST)
+            if form.is_valid():
+                collect = form.save(commit = False)
+                collect.agent = request.user
+                collect.site = site
+                collect.water_quality = water
+                collect.save()
+                return redirect('site_collect_list')
+    context={'site':site}
+    return render(request, 'pages/collecte/site/add.html', context)
 
 @login_required(login_url='login')
 def view_site_collect(request, id):
     collect = SiteCollecte.objects.get(id=id)
-    details = SiteCollecteDetail.objects.filter(site_collecte = collect)
+    details = SiteCollecteDetail.objects.filter(site_collecte = collect, is_exist = True)
     context = {
         'collect': collect,
         'details': details
@@ -170,16 +206,26 @@ def create_maintenance(request, id):
 
 @login_required(login_url='login')
 def add_maintenance(request, id):
-    maintenance = Maintenance.objects.get(id=id)
+    site = Site.objects.get(id=id)
     
     settings = Setting.objects.all()
     if request.POST:
+        maintenance = Maintenance.objects.create(
+        site = site,
+        agent = request.user
+    )
         for setting in settings:
             value = request.POST[str(setting.id)]
+            try:
+                is_exist = request.POST['is_exist'+str(setting.id)]
+                is_exist = True
+            except MultiValueDictKeyError:
+                is_exist = False
             MaintenanceDetail.objects.create(
                 maintenance = maintenance,
                 setting = setting,
-                value = value
+                value = value,
+                is_exist = is_exist,
             )
         return redirect('list_maintenance')
 
@@ -192,7 +238,7 @@ def add_maintenance(request, id):
 @login_required(login_url='login')
 def view_maintenance(request, id):
     maintenance = Maintenance.objects.get(id=id)
-    details = MaintenanceDetail.objects.filter(maintenance = maintenance)
+    details = MaintenanceDetail.objects.filter(maintenance = maintenance, is_exist = True)
     context = {
         'maintenance': maintenance,
         'details': details
@@ -241,7 +287,7 @@ def add_customer_collecte(request, id):
     form = CustomerCollecteForm()
 
     if request.method == 'POST':
-        form = CustomerCollecteForm(request.POST)
+        form = CustomerCollecteForm(request.POST, request.FILES)
         if form.is_valid():
             collect = form.save(commit = False)
             collect.user = user

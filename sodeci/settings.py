@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+load_dotenv()
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +28,7 @@ SECRET_KEY = 'django-insecure-5713z^c%83!r#(o#pum@#ou1nbvu$aepd^n*jn*-14!a(i_dl_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -93,8 +96,8 @@ PHONENUMBER_DEFAULT_REGION = "BJ"
 PHONENUMBER_DEFAULT_FORMAT = "INTERNATIONAL"
 
 # Get your environment Mailjet keys
-MAILJET_API_KEY  = '8703efa37e76bae1a1b9592687990fdb'
-MAILJET_API_SECRET  = '32287b487427a5a1d4a8179afb68fa87'
+MAILJET_API_KEY  = os.getenv('MAILJET_API_KEY')
+MAILJET_API_SECRET  = os.getenv('MAILJET_API_SECRET')
 
 # Send mail config
 EMAIL_BACKEND = 'django_mailjet.backends.MailjetBackend'
@@ -103,7 +106,7 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 EMAIL_PORT = 25
 EMAIL_HOST_USER = 'euphrem0427@gmail.com'
-EMAIL_HOST_PASSWORD = 'Coffi_0427'
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -111,11 +114,13 @@ EMAIL_HOST_PASSWORD = 'Coffi_0427'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'sodeci-dev',
-        'USER': 'postgres',
-        'PASSWORD': 'aymart',
-        'HOST': '127.0.0.1',
-        'PORT': '5432'
+        'NAME': os.getenv("DATABASE_NAME"),
+        'CHARSET': os.getenv("CHARSET"),
+        'COLLATION': os.getenv("COLLATION"),
+        'USER': os.getenv("DATABASE_USER"),
+        'PASSWORD': os.getenv("DATABASE_PASSWORD"),
+        'HOST': os.getenv("DATABASE_HOST"),
+        'PORT': os.getenv("DATABASE_PORT"),
     }
 }
 
@@ -144,7 +149,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'fr-fr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Lagos'
 
 USE_I18N = True
 

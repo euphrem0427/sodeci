@@ -1,5 +1,8 @@
 $(function() {
     "use strict";
+    $('#check').change(function () {
+        $('#fname').prop("disabled", !this.checked);
+    }).change()
 
     $(".preloader").fadeOut();
     // ============================================================== 

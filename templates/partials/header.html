@@ -60,9 +60,9 @@
                      <span class="d-block d-md-none"><i class="fa fa-plus"></i></span>   
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{% url 'choice_site_collect' %}">Site</a>
-                        <a class="dropdown-item" href="{% url 'list_maintenance' %}">Abonnée</a>
-                        <a class="dropdown-item" href="{% url 'list_maintenance' %}">Maintenance</a>
+                        <a class="dropdown-item" href="{% url 'choice_site_collect' %}">Unité de production</a>
+                        <a class="dropdown-item" href="{% url 'list_customer_collecte' %}">Abonnée</a>
+                        <a class="dropdown-item" href="{% url 'choice_maintenance_site' %}">Maintenance</a>
                     </div>
                 </li>
                 <!-- ============================================================== -->
@@ -183,9 +183,15 @@
         <nav class="sidebar-nav">
             <ul id="sidebarnav" class="p-t-30">
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'home' %}" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Tableau de bord</span></a></li>
+                {% if perms.app.view_agence %}
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'agence_list' %}" aria-expanded="false"><i class="fa fa-building"></i><span class="hide-menu">Nos agences</span></a></li>
+                {% endif %}
+                {% if perms.app.view_site %}
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'site_list' %}" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu"> Unités de production</span></a></li>
+                {% endif %}
+                {% if perms.app.view_abonne %}
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'list_abonne' %}" aria-expanded="false"><i class="fas fa-users"></i><span class="hide-menu"> Abonnées</span></a></li>
+                {% endif %}
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Collectes </span></a>
                     <ul aria-expanded="false" class="collapse  first-level">
                         <li class="sidebar-item"><a href="{% url 'list_customer_collecte' %}" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> Abonnées </span></a></li>
@@ -193,12 +199,14 @@
                         <li class="sidebar-item"><a href="{% url 'list_maintenance' %}" class="sidebar-link"><i class=" fas fa-check-circle"></i><span class="hide-menu"> Maintenance </span></a></li>
                     </ul>
                 </li>
+                {% if perms.accounts.view_user %}
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-user"></i><span class="hide-menu">Administration </span></a>
                     <ul aria-expanded="false" class="collapse  first-level">
                         <li class="sidebar-item"><a href="{% url 'list_users' %}" class="sidebar-link"><i class="fa fa-users"></i><span class="hide-menu"> Utilisateurs </span></a></li>
                         <li class="sidebar-item"><a href="{% url 'list_groups' %}" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> Profils </span></a></li>
                     </ul>
                 </li>
+                {% endif %}
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-cogs"></i><span class="hide-menu">Paramètres </span></a>
                     <ul aria-expanded="false" class="collapse  first-level">
                         <li class="sidebar-item"><a href="{% url 'list_site_setting' %}" class="sidebar-link"><i class="fa fa-cog"></i><span class="hide-menu"> Unité de production </span></a></li>
@@ -207,7 +215,7 @@
                         <li class="sidebar-item"><a href="{% url 'list_commune' %}" class="sidebar-link"><i class="fa fa-cog"></i><span class="hide-menu"> Commune </span></a></li>
                     </ul>
                 </li>
-                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'stats' %}" aria-expanded="false"><i class="fas fa-chart-line"></i><span class="hide-menu">Satitistiques </span></a></li>
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'stats' %}" aria-expanded="false"><i class="fas fa-chart-line"></i><span class="hide-menu">Statistiques </span></a></li>
                 
             </ul>
         </nav>

@@ -90,6 +90,8 @@ class MaintenanceDetail(models.Model):
         on_delete=models.CASCADE
     )
     value = models.CharField(_("Valuer du paremetre"), max_length=254)
+    
+    is_exist = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = _("MaintenanceDetail")
@@ -152,6 +154,7 @@ class SiteCollecteDetail(models.Model):
         on_delete=models.CASCADE
     )
     value = models.CharField(_("Valuer du paremetre"), max_length=254)
+    is_exist = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = _("SiteCollecteDetail")
@@ -162,3 +165,62 @@ class SiteCollecteDetail(models.Model):
 
     def get_absolute_url(self):
         return reverse("SiteCollecteDetail_detail", kwargs={"pk": self.pk})
+
+class WaterQuality(models.Model):
+
+    ph_in_site = models.IntegerField(null = True)
+    humidity_in_site = models.IntegerField(null = True)
+    chlore_in_site = models.IntegerField(null = True)
+    ph_out_site = models.IntegerField(null = True)
+    humidity_out_site = models.IntegerField(null = True)
+    chlore_out_site = models.IntegerField(null = True)
+    date_time = models.DateTimeField(auto_now_add=True, null = True)
+
+    class Meta:
+        verbose_name = _("WaterQuality")
+        verbose_name_plural = _("WaterQualitys")
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("WaterQuality_detail", kwargs={"pk": self.pk})
+
+
+class CollectOnSite(models.Model):
+
+    agent = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+    )
+
+    site = models.ForeignKey(
+        Site,
+        on_delete=models.CASCADE,
+        null = True
+    )
+    solaire = models.CharField(max_length=100, null=True)
+    groupe_electro = models.CharField(max_length=100, null=True)
+    index_depart = models.IntegerField(null=True)
+    production = models.CharField(max_length=100, null=True)
+    sbee = models.CharField(max_length=100, null=True)
+    water_quality = models.ForeignKey(
+        WaterQuality,
+        on_delete=models.CASCADE,
+        null = True
+        )
+    observation = models.TextField(null = True)
+    nbre_panne = models.IntegerField(null = True)
+    description_panne = models.TextField(null = True)
+    production_estimer = models.CharField(max_length=100,null = True)
+    autres= models.TextField(null=True)
+    date = models.DateField(auto_now_add=True,null = True)
+    class Meta:
+        verbose_name = _("CollectOnSite")
+        verbose_name_plural = _("CollectOnSites")
+
+    def __str__(self):
+        return str(self.site.title)
+
+    def get_absolute_url(self):
+        return reverse("CollectOnSite_detail", kwargs={"pk": self.pk})
