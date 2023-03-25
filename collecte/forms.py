@@ -25,21 +25,21 @@ class CollectOnSiteForm(ModelForm):
     class Meta:
         model = CollectOnSite
         fields = (
-            "agent", 
             "solaire",
             "groupe_electro",
             "index_depart",
             "production",
             "sbee",
-            "water_quality",
             "observation",
             "nbre_panne",
             "description_panne",
             "production_estimer",
-            "autres")
+            )
 
 
 class WaterQualityForm(ModelForm):
+
+    ph_in_site = IntegerField(required = True)
     
     class Meta:
         model = WaterQuality

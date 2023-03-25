@@ -76,34 +76,59 @@ def choice_site_collect(request):
 
 @login_required(login_url='login')
 def add_collect_on_site(request, id):
-    site = Site.objects.get(id=id)
-    water = None
-    water_form = WaterQualityForm()
-    form = CollectOnSiteForm()
-    if request.method == 'POST':
-        if 'ph_in_site' in request.POST:
-            water_form = WaterQualityForm(request.POST)
-            if water_form.is_valid():
-                water = water_form.save()
-        else:
-            form = CollectOnSiteForm(request.POST)
-            if form.is_valid():
-                collect = form.save(commit = False)
-                collect.agent = request.user
-                collect.site = site
-                collect.water_quality = water
-                collect.save()
-                return redirect('site_collect_list')
-    context={'site':site}
+    sites = Site.objects.get(id=id)
+    if request.POST:
+        CollectOnSite.objects.create(
+            agent = request.user,
+            site = sites,
+            water_quality = WaterQuality.objects.create(
+                ph_in_site = 7,
+                humidity_in_site = 100,
+                chlore_in_site = 0.3,
+                ph_out_site = 7,
+                humidity_out_site = 100,
+                chlore_out_site = 0.1,
+            ),
+            solaire = request.POST.get('solaire'),
+            groupe_electro = request.POST.get('groupe_electro'),
+            index_depart = request.POST.get('index_depart'),
+            production = request.POST.get('production'),
+            sbee = request.POST.get('sbee'),
+            observation = request.POST.get('observation'),
+            nbre_panne = request.POST.get('nbre_panne'),
+            description_panne = request.POST.get('description_panne'),
+            production_estimer = request.POST.get('production_estimer'),
+        )
+        return redirect('site_collect_list')
+        
+    context={'site':sites}
     return render(request, 'pages/collecte/site/add.html', context)
+
+def water_quality(request, id):
+    water_quality = WaterQuality.objects.get(id=id)
+    if request.POST:
+        water_quality.ph_in_site = request.POST.get('ph_in_site')
+        water_quality.humidity_in_site = request.POST.get('humidity_in_site')
+        water_quality.chlore_in_site = request.POST.get('chlore_in_site')
+        water_quality.ph_out_site = request.POST.get('ph_out_site')
+        water_quality.humidity_out_site = request.POST.get('humidity_out_site')
+        water_quality.chlore_out_site = request.POST.get('chlore_out_site')
+
+        
+        water_quality.save()
+        return redirect('site_collect_list')
+        
+    context={'water_quality':water_quality}
+    return render(request, 'pages/collecte/site/water.html', context)
+    
+
+           
 
 @login_required(login_url='login')
 def view_site_collect(request, id):
-    collect = SiteCollecte.objects.get(id=id)
-    details = SiteCollecteDetail.objects.filter(site_collecte = collect, is_exist = True)
+    collect = CollectOnSite.objects.get(id=id)
     context = {
         'collect': collect,
-        'details': details
     }
     return render(request, 'pages/collecte/site/view.html', context)
 
@@ -255,7 +280,7 @@ def delete_maintenance(request, id):
 
 @login_required(login_url='login')
 def delete_site_collect(request, id):
-    collect = SiteCollecte.objects.get(id=id)
+    collect = CollectOnSite.objects.get(id=id)
     collect.delete()
     return redirect('site_collect_list')
 

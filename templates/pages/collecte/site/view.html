@@ -6,17 +6,138 @@
             <form class="form-horizontal" method = "POST">
                 {% csrf_token %}
                 <div class="card-body">
-                    <h4 class="card-title text-center">Collecte sur {{collect.site.title}}</h4>
-                    {% for detail in details %}
-                        <div class="form-group row">
-                            <label for="fname" class="col-sm-3 text-right control-label col-form-label">{{detail.setting.title}}</label>
-                            <div class="col-sm-9">
-                                <input type="text" disabled value="{{detail.value}}" class="form-control" id="fname" placeholder="Quantité de gazoil en litre">
-                            </div>
+                    <h4 class="card-title text-center">Information sur la collecte</h4>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Date de la collecte</label>
+                        <div class="col-sm-7">
+                            <input type="text" disabled value="{{collect.date}}" class="form-control" id="solaire" placeholder="Solaire">
                         </div>
-                    {% endfor %}
-                    
-                </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Agent</label>
+                        <div class="col-sm-7">
+                            <input type="text" disabled value="{{collect.agent.first_name}} {{collect.agent.last_name}}" class="form-control" id="solaire" placeholder="Solaire">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Unité de production</label>
+                        <div class="col-sm-7">
+                            <input type="text" disabled value="{{collect.site}}" class="form-control" id="solaire" placeholder="Solaire">
+                        </div>
+                    </div>
+                    {% if collect.solaire is not None %}
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Solaire</label>
+                        <div class="col-sm-7">
+                            <input type="text" disabled value="{{collect.solaire}}" class="form-control" id="solaire" placeholder="Solaire">
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if collect.groupe_electro is not None %}
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Groupe électrogène</label>
+                        <div class="col-sm-7">
+                            <input type="text" disabled value="{{collect.groupe_electro}}" class="form-control" id="groupe" placeholder="Groupe électrogène">
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if collect.index_depart is not None %}
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Index de départ</label>
+                        <div class="col-sm-7">
+                            <input type="text" disabled value="{{collect.index_depart}}" class="form-control" id="Index" placeholder="Index de départ">
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if collect.production is not None %}
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Production</label>
+                        <div class="col-sm-7">
+                            <input type="text" disabled value="{{collect.production}}" class="form-control" id="Production" placeholder="Production">
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if collect.sbee is not None %}
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">SBEE</label>
+                        <div class="col-sm-7">
+                            <input type="text" disabled value="{{collect.sbee}}" class="form-control" id="Sbee" placeholder="SBEE">
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if collect.water_quality.ph_in_site is not None %}
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">PH sur site</label>
+                        <div class="col-sm-9">
+                            <input type="text" disabled value="{{collect.water_quality.ph_in_site}}" class="form-control" id="fname">
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if collect.water_quality.humidity_in_site is not None %}
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Humidité sur site</label>
+                        <div class="col-sm-9">
+                            <input type="text" disabled value="{{collect.water_quality.humidity_in_site}}" class="form-control" id="fname">
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if collect.water_quality.chlore_in_site is not None %}
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Chlore sur site</label>
+                        <div class="col-sm-9">
+                            <input type="text" disabled value="{{collect.water_quality.chlore_in_site}}" class="form-control" id="fname">
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if collect.water_quality.ph_out_site is not None %}
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">PH hors site</label>
+                        <div class="col-sm-9">
+                            <input type="text" disabled value="{{collect.water_quality.ph_out_site}}" class="form-control" id="fname">
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if collect.water_quality.humidity_out_site is not None %}
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Humidité hors site</label>
+                        <div class="col-sm-9">
+                            <input type="text" disabled value="{{collect.water_quality.humidity_out_site}}" class="form-control" id="fname">
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if collect.water_quality.chlore_out_site is not None %}
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Chlore hors site</label>
+                        <div class="col-sm-9">
+                            <input type="text" disabled value="{{collect.water_quality.chlore_out_site}}" class="form-control" id="fname">
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if collect.observation is not None %}
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Observation</label>
+                        <div class="col-sm-7">
+                            <textarea disabled class="form-control" id="Observation">{{collect.observation}}</textarea>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if collect.nbre_panne is not None %}
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Nombre de panne</label>
+                        <div class="col-sm-7">
+                            <input type="text" disabled value="{{collect.nbre_panne}}" class="form-control mb-2" id="nbrepanne" placeholder="Nombre de panne">
+                            <textarea disabled class="form-control disabled" id="pannedesc">{{collect.description_panne}}</textarea>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if collect.production_estimer is not None %}
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Production estimée</label>
+                        <div class="col-sm-7">
+                            <input type="text" disabled value="{{collect.production_estimer}}" class="form-control" id="prod" placeholder="Production estimiée">
+                        </div>
+                    </div>
+                    {% endif %}
             </form>
         </div>
     </div>

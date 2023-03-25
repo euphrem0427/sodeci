@@ -52,6 +52,7 @@
                         <input type="text" name="sbee" class="form-control" id="Sbee" placeholder="SBEE">
                     </div>
                 </div>
+                {% comment %} 
                 <div class="form-group row">
                     <label for="fname" class="col-sm-3 text-right control-label col-form-label">Qualité de l'eau</label>
                     <div class="col-sm-2">
@@ -62,7 +63,7 @@
                             Remplir
                         </button>
                     </div>
-                </div>
+                </div> 
                 <div class="modal fade" id="water_quality" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <form class="form-horizontal" method="POST">
@@ -118,7 +119,8 @@
                             </div>
                         </form>
                     </div>
-                </div>
+                </div> 
+                {% endcomment %}
                 <div class="form-group row">
                     <label for="fname" class="col-sm-3 text-right control-label col-form-label">Observation</label>
                     <div class="col-sm-2">

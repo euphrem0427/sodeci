@@ -209,8 +209,8 @@
                 {% endif %}
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-cogs"></i><span class="hide-menu">Paramètres </span></a>
                     <ul aria-expanded="false" class="collapse  first-level">
-                        <li class="sidebar-item"><a href="{% url 'list_site_setting' %}" class="sidebar-link"><i class="fa fa-cog"></i><span class="hide-menu"> Unité de production </span></a></li>
-                        <li class="sidebar-item"><a href="{% url 'list_setting' %}" class="sidebar-link"><i class="fa fa-cog"></i><span class="hide-menu"> Maintenance </span></a></li>
+                        {% comment %} <li class="sidebar-item"><a href="{% url 'list_site_setting' %}" class="sidebar-link"><i class="fa fa-cog"></i><span class="hide-menu"> Unité de production </span></a></li>{% endcomment %}
+                        <li class="sidebar-item"><a href="{% url 'list_setting' %}" class="sidebar-link"><i class="fa fa-cog"></i><span class="hide-menu"> Maintenance </span></a></li> 
                         <li class="sidebar-item"><a href="{% url 'list_departement' %}" class="sidebar-link"><i class="fa fa-cog"></i><span class="hide-menu"> Département </span></a></li>
                         <li class="sidebar-item"><a href="{% url 'list_commune' %}" class="sidebar-link"><i class="fa fa-cog"></i><span class="hide-menu"> Commune </span></a></li>
                     </ul>

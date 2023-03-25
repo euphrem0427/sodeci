@@ -1,0 +1,57 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <form class="form-horizontal" method = "POST">
+                {% csrf_token %}
+                <div class="card-body">
+                    <h4 class="card-title text-center">Qualité de l'eau</h4>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">PH sur site</label>
+                        <div class="col-sm-9">
+                            <input type="number" value={{water_quality.ph_in_site}} name="ph_in_site" class="form-control" id="fname">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Humidité sur site</label>
+                        <div class="col-sm-9">
+                            <input type="number" value={{water_quality.humidity_in_site}} name="humidity_in_site" class="form-control" id="fname">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Chlore sur site</label>
+                        <div class="col-sm-9">
+                            <input type="number" value={{water_quality.chlore_in_site}} name="chlore_in_site" class="form-control" id="fname">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">PH hors site</label>
+                        <div class="col-sm-9">
+                            <input type="number" value={{water_quality.ph_out_site}} name="ph_out_site" class="form-control" id="fname">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Humidité hors site</label>
+                        <div class="col-sm-9">
+                            <input type="number" value={{water_quality.humidity_out_site}} name="humidity_out_site" class="form-control" id="fname">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Chlore hors site</label>
+                        <div class="col-sm-9">
+                            <input type="number" value={{water_quality.chlore_out_site}} name="chlore_out_site" class="form-control" id="fname">
+                        </div>
+                    </div>
+                
+                <div class="border-top">
+                    <div class="card-body">
+                        <button type="submit" class="btn btn-success enr">Enregistrer</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

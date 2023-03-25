@@ -168,20 +168,20 @@ class SiteCollecteDetail(models.Model):
 
 class WaterQuality(models.Model):
 
-    ph_in_site = models.IntegerField(null = True)
-    humidity_in_site = models.IntegerField(null = True)
-    chlore_in_site = models.IntegerField(null = True)
-    ph_out_site = models.IntegerField(null = True)
-    humidity_out_site = models.IntegerField(null = True)
-    chlore_out_site = models.IntegerField(null = True)
-    date_time = models.DateTimeField(auto_now_add=True, null = True)
+    ph_in_site = models.FloatField(null = True, blank = True)
+    humidity_in_site = models.FloatField(null = True, blank = True)
+    chlore_in_site = models.FloatField(null = True, blank = True)
+    ph_out_site = models.FloatField(null = True, blank = True)
+    humidity_out_site = models.FloatField(null = True, blank = True)
+    chlore_out_site = models.FloatField(null = True, blank = True)
+    date_time = models.DateTimeField(auto_now_add=True, null = True, blank = True)
 
     class Meta:
         verbose_name = _("WaterQuality")
         verbose_name_plural = _("WaterQualitys")
 
     def __str__(self):
-        return self.name
+        return self.ph_in_site
 
     def get_absolute_url(self):
         return reverse("WaterQuality_detail", kwargs={"pk": self.pk})
