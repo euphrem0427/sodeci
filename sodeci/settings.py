@@ -111,9 +111,9 @@ EMAIL_HOST_PASSWORD = 'Coffi_0427'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'sodeci-dev',
+        'NAME': 'SODECI',
         'USER': 'postgres',
-        'PASSWORD': 'aymart',
+        'PASSWORD': 'Dossajunior67',
         'HOST': '127.0.0.1',
         'PORT': '5432'
     }

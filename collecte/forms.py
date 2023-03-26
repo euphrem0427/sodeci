@@ -28,7 +28,7 @@ class CollectOnSiteForm(ModelForm):
             "agent", 
             "solaire",
             "groupe_electro",
-            "index_depart",
+            "index",
             "production",
             "sbee",
             "observation",
