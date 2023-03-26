@@ -134,20 +134,23 @@ def view_site_collect(request, id):
     parameterhumidity = ParametersWaterQuality.objects.all().values('humidity')
     parameterchlore = ParametersWaterQuality.objects.all().values('chlore')
     
-    ph = collect.water_quality.ph_in_site
-    tauxph = (ph/get_ph_standard_value(parameterph))*100 
+    tauxph = get_ph_standard_value(parameterph,collect.water_quality.ph_in_site)
+    tauxph_out = get_ph_standard_value(parameterph,collect.water_quality.ph_out_site)
 
-    humidity = collect.water_quality.humidity_in_site
-    tauxhumidity = (humidity/get_humidity_standard_value(parameterhumidity))*100
+    tauxhumidity = get_humidity_standard_value(parameterhumidity,collect.water_quality.humidity_in_site)
+    tauxhumidity_out = get_humidity_standard_value(parameterhumidity,collect.water_quality.humidity_out_site)
 
-    chlore = collect.water_quality.chlore_in_site
-    tauxchlore = (chlore/get_chlore_standard_value(parameterchlore))*100
+    tauxchlore = get_chlore_standard_value(parameterchlore,collect.water_quality.chlore_in_site)
+    tauxchlore_out=get_chlore_standard_value(parameterchlore,collect.water_quality.chlore_out_site)
 
     context = {
         'collect': collect,
         'tauxph':tauxph,
         'tauxhumidity':tauxhumidity,
-        'tauxchlore':tauxchlore
+        'tauxchlore':tauxchlore,
+        'tauxph_out':tauxph_out,
+        'tauxhumidity_out':tauxhumidity_out,
+        'tauxchlore_out':tauxchlore_out
     }
     return render(request, 'pages/collecte/site/view.html', context)
 
