@@ -27,8 +27,7 @@ class CollectOnSiteForm(ModelForm):
         fields = (
             "solaire",
             "groupe_electro",
-            "index_depart",
-            "production",
+            "index",
             "sbee",
             "observation",
             "nbre_panne",

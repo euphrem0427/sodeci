@@ -201,8 +201,8 @@ class CollectOnSite(models.Model):
     )
     solaire = models.CharField(max_length=100, null=True)
     groupe_electro = models.CharField(max_length=100, null=True)
-    index_depart = models.IntegerField(null=True)
-    production = models.CharField(max_length=100, null=True)
+    index= models.IntegerField(null=True)
+    #production = models.CharField(max_length=100, null=True)
     sbee = models.CharField(max_length=100, null=True)
     water_quality = models.ForeignKey(
         WaterQuality,
