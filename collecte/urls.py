@@ -9,6 +9,9 @@ urlpatterns = [
     path('view_site_collect/<int:id>/', view_site_collect),
     path('delete_site_collect/<int:id>/', delete_site_collect),
 
+    path('add_pwq/', add_parameterwaterquality),
+    path('view_pwq/<int:id>/', view_parameterwaterquality,name="list_of_parameters"),
+
     path('list_setting/', list_settings, name="list_setting"),
     path('add_setting/', add_setting, name="add_setting"),
     path('view_setting/<int:id>/', view_setting),
@@ -31,4 +34,8 @@ urlpatterns = [
     path('delete_customer_collecte/<int:id>/', delete_customer_collecte),
     path('view_customer_collecte/<int:id>/', view_customer_collecte),
     path('choice_customer',choice_customer, name ="choice_customer"),
+
+
+    path('rapport_collecte',rapport_collecte, name ="rapport_collecte"),
+
 ]

@@ -41,6 +41,10 @@ $(function() {
         $('#prod').prop("disabled", !this.checked);
     }).change()
 
+    $('#checkautre').change(function () {
+        $('#autre').prop("disabled", !this.checked);
+    }).change()
+
     //script to calculate production
     $(document).ready(function() {
         //this calculates values automatically 
@@ -49,7 +53,6 @@ $(function() {
             Subtract();
         });
     });
-    
     function Subtract() {
                 var ancien = document.getElementById('ancien').value;
                 var nouveau = document.getElementById('nouveau').value;

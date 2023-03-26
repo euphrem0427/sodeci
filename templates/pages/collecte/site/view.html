@@ -16,13 +16,19 @@
                     <div class="form-group row">
                         <label for="fname" class="col-sm-3 text-right control-label col-form-label">Agent</label>
                         <div class="col-sm-7">
-                            <input type="text" disabled value="{{collect.agent.first_name}} {{collect.agent.last_name}}" class="form-control" id="solaire" placeholder="Solaire">
+                            <input type="text" disabled value="{{collect.agent.username}}" class="form-control" id="solaire" placeholder="Solaire">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="fname" class="col-sm-3 text-right control-label col-form-label">Unité de production</label>
                         <div class="col-sm-7">
                             <input type="text" disabled value="{{collect.site}}" class="form-control" id="solaire" placeholder="Solaire">
+                        </div>
+                    </div>
+                     <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Index Actuel</label>
+                        <div class="col-sm-7">
+                            <input type="text" disabled value="{{collect.index}}" class="form-control" id="solaire" placeholder="Solaire">
                         </div>
                     </div>
                     {% if collect.solaire is not None %}
@@ -64,12 +70,18 @@
                             <input type="text" disabled value="{{collect.sbee}}" class="form-control" id="Sbee" placeholder="SBEE">
                         </div>
                     </div>
-                    {% endif %}
+                    {% endif %} 
                     {% if collect.water_quality.ph_in_site is not None %}
                     <div class="form-group row">
                         <label for="fname" class="col-sm-3 text-right control-label col-form-label">PH sur site</label>
                         <div class="col-sm-9">
                             <input type="text" disabled value="{{collect.water_quality.ph_in_site}}" class="form-control" id="fname">
+                        </div>
+                    </div>
+                     <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Taux de conformité ph sur site</label>
+                        <div class="col-sm-7">
+                            <input type="text" disabled value="{{tauxph}} %" class="form-control" id="prod" placeholder="Production estimiée">
                         </div>
                     </div>
                     {% endif %}
@@ -80,12 +92,24 @@
                             <input type="text" disabled value="{{collect.water_quality.humidity_in_site}}" class="form-control" id="fname">
                         </div>
                     </div>
+                     <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Taux de conformité humidité sur site</label>
+                        <div class="col-sm-7">
+                            <input type="text" disabled value="{{tauxhumidity}} %" class="form-control" id="prod" placeholder="Production estimiée">
+                        </div>
+                    </div>
                     {% endif %}
                     {% if collect.water_quality.chlore_in_site is not None %}
                     <div class="form-group row">
                         <label for="fname" class="col-sm-3 text-right control-label col-form-label">Chlore sur site</label>
                         <div class="col-sm-9">
                             <input type="text" disabled value="{{collect.water_quality.chlore_in_site}}" class="form-control" id="fname">
+                        </div>
+                    </div>
+                     <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Taux de conformité chlore sur site</label>
+                        <div class="col-sm-7">
+                            <input type="text" disabled value="{{tauxchlore}} %" class="form-control" id="prod" placeholder="Production estimiée">
                         </div>
                     </div>
                     {% endif %}
@@ -96,6 +120,12 @@
                             <input type="text" disabled value="{{collect.water_quality.ph_out_site}}" class="form-control" id="fname">
                         </div>
                     </div>
+                     <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Taux de conformité ph hors site</label>
+                        <div class="col-sm-7">
+                            <input type="text" disabled value="{{collect.production_estimer}}" class="form-control" id="prod" placeholder="Production estimiée">
+                        </div>
+                    </div>
                     {% endif %}
                     {% if collect.water_quality.humidity_out_site is not None %}
                     <div class="form-group row">
@@ -104,12 +134,24 @@
                             <input type="text" disabled value="{{collect.water_quality.humidity_out_site}}" class="form-control" id="fname">
                         </div>
                     </div>
+                     <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Taux de conformité humidité hors site</label>
+                        <div class="col-sm-7">
+                            <input type="text" disabled value="{{collect.production_estimer}}" class="form-control" id="prod" placeholder="Production estimiée">
+                        </div>
+                    </div>
                     {% endif %}
                     {% if collect.water_quality.chlore_out_site is not None %}
                     <div class="form-group row">
                         <label for="fname" class="col-sm-3 text-right control-label col-form-label">Chlore hors site</label>
                         <div class="col-sm-9">
                             <input type="text" disabled value="{{collect.water_quality.chlore_out_site}}" class="form-control" id="fname">
+                        </div>
+                    </div>
+                     <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Taux de conformité chlore hors site</label>
+                        <div class="col-sm-7">
+                            <input type="text" disabled value="{{collect.production_estimer}}" class="form-control" id="prod" placeholder="Production estimiée">
                         </div>
                     </div>
                     {% endif %}
@@ -138,6 +180,7 @@
                         </div>
                     </div>
                     {% endif %}
+                   
             </form>
         </div>
     </div>

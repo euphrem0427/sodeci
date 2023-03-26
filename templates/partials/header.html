@@ -215,9 +215,15 @@
                         <li class="sidebar-item"><a href="{% url 'list_commune' %}" class="sidebar-link"><i class="fa fa-cog"></i><span class="hide-menu"> Commune </span></a></li>
                     </ul>
                 </li>
-                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'stats' %}" aria-expanded="false"><i class="fas fa-chart-line"></i><span class="hide-menu">Statistiques </span></a></li>
-                
+                <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-chart-line"></i><span class="hide-menu">Statistiques </span></a>
+                    <ul aria-expanded="false" class="collapse  first-level">
+                        {% comment %} <li class="sidebar-item"><a href="{% url 'list_site_setting' %}" class="sidebar-link"><i class="fa fa-cog"></i><span class="hide-menu"> Unité de production </span></a></li>{% endcomment %}
+                        <li class="sidebar-item"><a href="{% url 'rapport_collecte' %}" class="sidebar-link"><i class="fa fa-cog"></i><span class="hide-menu"> Rapport de collecte sur site </span></a></li> 
+                        <li class="sidebar-item"><a href="{% url 'rapport_collecte' %}" class="sidebar-link"><i class="fa fa-cog"></i><span class="hide-menu"> Rapport de maintenance </span></a></li>
+                    </ul>
+                </li>                
             </ul>
+
         </nav>
         <!-- End Sidebar navigation -->
     </div>

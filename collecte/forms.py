@@ -50,3 +50,16 @@ class WaterQualityForm(ModelForm):
             "humidity_out_site",
             "chlore_out_site"
             )
+        
+
+class ParametersWaterQualityForm(ModelForm):
+
+    ph = IntegerField(required = True)
+    
+    class Meta:
+        model = ParametersWaterQuality
+        fields = (
+            "ph",
+            "humidity",
+            "chlore",
+            )
