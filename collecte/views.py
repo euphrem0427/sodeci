@@ -77,6 +77,8 @@ def choice_site_collect(request):
 @login_required(login_url='login')
 def add_collect_on_site(request, id):
     sites = Site.objects.get(id=id)
+    collectes = CollectOnSite.objects.filter(site=sites).order_by('-id')[0]
+    print(collectes)
     if request.POST:
         CollectOnSite.objects.create(
             agent = request.user,
@@ -91,8 +93,7 @@ def add_collect_on_site(request, id):
             ),
             solaire = request.POST.get('solaire'),
             groupe_electro = request.POST.get('groupe_electro'),
-            index_depart = request.POST.get('index_depart'),
-            production = request.POST.get('production'),
+            index = request.POST.get('index'),
             sbee = request.POST.get('sbee'),
             observation = request.POST.get('observation'),
             nbre_panne = request.POST.get('nbre_panne'),
@@ -101,7 +102,7 @@ def add_collect_on_site(request, id):
         )
         return redirect('site_collect_list')
         
-    context={'site':sites}
+    context={'site':sites,'collectes':collectes}
     return render(request, 'pages/collecte/site/add.html', context)
 
 def water_quality(request, id):

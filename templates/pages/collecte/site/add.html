@@ -7,7 +7,35 @@
                 {% csrf_token %}
                 <div class="card-body">
                     <h4 class="card-title text-center">Collecte sur {{site.title}} par {{request.user.first_name}}</h4>
-                    <div class="form-group row">
+                    
+                <div class="form-group row">
+                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Ancien index</label>
+                    <div class="col-sm-5">
+                        <input type="number" name="" value="{{collectes.index}}" id="ancien" class="form-control"> 
+                    </div> 
+                    <div class="col-sm-4">
+                        <input type="text" name="" value="{{collectes.date}}" class="form-control" id="" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Nouveau index</label>
+                     <div class="col-sm-2">
+                        <input type="checkbox" name="check_production" id="checknouveau" class="form-control mt-2">
+                    </div>
+                    <div class="col-sm-7">
+                        <input type="number" name="index" id="nouveau" class="form-control"> 
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Production</label>
+                    <div class="col-sm-2">
+                        <input type="checkbox" name="check_production" id="checkproduction" class="form-control mt-2">
+                    </div>
+                    <div class="col-sm-7">
+                        <input type="text" name="" class="form-control" id="subt" placeholder="Production">
+                    </div>
+                </div>
+                <div class="form-group row">
                         <label for="fname" class="col-sm-3 text-right control-label col-form-label">Solaire</label>
                         <div class="col-sm-2"> 
                             <input type="checkbox" name="check_solaire" id="checksolaire" class="form-control mt-2">
@@ -25,24 +53,6 @@
                             <input type="text" name="groupe_electro" class="form-control" id="groupe" placeholder="Groupe électrogène">
                         </div>
                     </div>
-                <div class="form-group row">
-                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Index de départ</label>
-                    <div class="col-sm-2">
-                        <input type="checkbox" name="check_index_depart" id="checkIndex" class="form-control mt-2">
-                    </div>
-                    <div class="col-sm-7">
-                        <input type="number" name="index_depart" class="form-control" id="Index" placeholder="Index de départ">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Production</label>
-                    <div class="col-sm-2">
-                        <input type="checkbox" name="check_production" id="checkproduction" class="form-control mt-2">
-                    </div>
-                    <div class="col-sm-7">
-                        <input type="text" name="production" class="form-control" id="Production" placeholder="Production">
-                    </div>
-                </div>
                 <div class="form-group row">
                     <label for="fname" class="col-sm-3 text-right control-label col-form-label">SBEE</label>
                     <div class="col-sm-2">
@@ -159,3 +169,8 @@
     </div>
 </div>
 {% endblock content %}
+{% block extrascript %}
+<script type="text/javascript">
+
+</script>
+{% endblock%}
