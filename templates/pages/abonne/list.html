@@ -32,7 +32,7 @@
                             <tr>
                                 <th>Nom complet</th>
                                 <th>Agence</th>
-                                <th>Adresse</th>
+                                <th>Status</th>
                                 <th>Tel</th>
                                 <th>Action</th>
                             </tr>
@@ -42,7 +42,7 @@
                             <tr>
                                 <td>{{abonne.first_name}} {{abonne.last_name}}</td>
                                 <td>{{abonne.agence}}</td>
-                                <td>{{abonne.adresse}}</td>
+                                <td><a href="/change_status/{{abonne.id}}/" class="btn btn-success m-1">{{abonne.status}}</a></td>
                                 <td>{{abonne.phone}}</td>
                                 <td>
                                     <a href="/view_abonne/{{abonne.id}}/" class="btn btn-success m-1"><i class="fas fa-eye"></i></a>

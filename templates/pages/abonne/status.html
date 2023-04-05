@@ -1,0 +1,53 @@
+{% extends 'main.html' %}
+{% block page%}Abonnés{% endblock page%}
+{% block preview_page%}Liste des abonnés{% endblock preview_page%}
+{% block actual_page%}Modification{% endblock actual_page%}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <form method="POST" class="form-horizontal">
+                {% csrf_token %}
+                <div class="card-body">
+                    <h4 class="card-title">Information sur l'abonne</h4>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Nom</label>
+                        <div class="col-sm-9">
+                            <input type="text" value="{{abonne.first_name}}" name="first_name" class="form-control" id="fname" placeholder="Nom de l'abonnée">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Prénom</label>
+                        <div class="col-sm-9">
+                            <input type="text" value="{{abonne.last_name}}" name="last_name" class="form-control" id="fname" placeholder="Prénom de l'abonnée">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="lname" class="col-sm-3 text-right control-label col-form-label">Status actuel</label>
+                        <div class="col-sm-9">
+                            <input type="text" disabled value="{{abonne.status}}" name="status_actuel" class="form-control" id="lname" placeholder="Identifiant Fiscal Unique de l'abonnée">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fname" class="col-sm-3 text-right control-label col-form-label">Changer de status</label>
+                        <div class="col-md-9">
+                            <select name="status" class="select2 form-control custom-select" style="width: 100%; height:36px;">
+                                {% for agence in statusAb %}
+                                    <option value="{{agence.id}}">{{agence.name}}</option>
+                                {% endfor %}
+                            </select>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="border-top">
+                    <div class="card-body">
+                        <button type="submit" class="btn btn-success">Enregistrer</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

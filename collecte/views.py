@@ -5,6 +5,7 @@ from .forms import *
 from django.contrib.auth.decorators import login_required
 from accounts.decorators import *
 from django.utils.datastructures import MultiValueDictKeyError
+from .utils import *
 # Create your views here.
 
 
@@ -77,22 +78,26 @@ def choice_site_collect(request):
 @login_required(login_url='login')
 def add_collect_on_site(request, id):
     sites = Site.objects.get(id=id)
+    try:
+        collectes = CollectOnSite.objects.filter(site=sites).last()
+    except CollectOnSite.DoesNotExist:
+        collectes = None
+    print(collectes)
     if request.POST:
         CollectOnSite.objects.create(
             agent = request.user,
             site = sites,
             water_quality = WaterQuality.objects.create(
-                ph_in_site = 7,
-                humidity_in_site = 100,
-                chlore_in_site = 0.3,
-                ph_out_site = 7,
-                humidity_out_site = 100,
-                chlore_out_site = 0.1,
+                ph_in_site = 0,
+                humidity_in_site = 0,
+                chlore_in_site = 0,
+                ph_out_site = 0,
+                humidity_out_site = 0,
+                chlore_out_site = 0,
             ),
             solaire = request.POST.get('solaire'),
             groupe_electro = request.POST.get('groupe_electro'),
-            index_depart = request.POST.get('index_depart'),
-            production = request.POST.get('production'),
+            index = request.POST.get('index'),
             sbee = request.POST.get('sbee'),
             observation = request.POST.get('observation'),
             nbre_panne = request.POST.get('nbre_panne'),
@@ -101,7 +106,7 @@ def add_collect_on_site(request, id):
         )
         return redirect('site_collect_list')
         
-    context={'site':sites}
+    context={'site':sites,'collectes':collectes}
     return render(request, 'pages/collecte/site/add.html', context)
 
 def water_quality(request, id):
@@ -127,8 +132,27 @@ def water_quality(request, id):
 @login_required(login_url='login')
 def view_site_collect(request, id):
     collect = CollectOnSite.objects.get(id=id)
+    parameterph = ParametersWaterQuality.objects.all().values('ph')
+    parameterhumidity = ParametersWaterQuality.objects.all().values('humidity')
+    parameterchlore = ParametersWaterQuality.objects.all().values('chlore')
+    
+    tauxph = get_ph_standard_value(parameterph,collect.water_quality.ph_in_site)
+    tauxph_out = get_ph_standard_value(parameterph,collect.water_quality.ph_out_site)
+
+    tauxhumidity = get_humidity_standard_value(parameterhumidity,collect.water_quality.humidity_in_site)
+    tauxhumidity_out = get_humidity_standard_value(parameterhumidity,collect.water_quality.humidity_out_site)
+
+    tauxchlore = get_chlore_standard_value(parameterchlore,collect.water_quality.chlore_in_site)
+    tauxchlore_out=get_chlore_standard_value(parameterchlore,collect.water_quality.chlore_out_site)
+
     context = {
         'collect': collect,
+        'tauxph':tauxph,
+        'tauxhumidity':tauxhumidity,
+        'tauxchlore':tauxchlore,
+        'tauxph_out':tauxph_out,
+        'tauxhumidity_out':tauxhumidity_out,
+        'tauxchlore_out':tauxchlore_out
     }
     return render(request, 'pages/collecte/site/view.html', context)
 
@@ -153,6 +177,25 @@ def add_setting(request):
             return redirect('list_setting')
     context={}
     return render(request, 'pages/setting/maintenance/add.html', context)
+
+"""Parameters water Quality"""
+@login_required(login_url='login')
+def add_parameterwaterquality(request):
+    form = ParametersWaterQualityForm()
+    if request.method == 'POST':
+        form = ParametersWaterQualityForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('list_of_parameters'+id)
+    context={}
+    return render(request, 'pages/setting/maintenance/add_wpq.html', context)
+
+
+@login_required(login_url='login')
+def view_parameterwaterquality(request, id):
+    parameters = ParametersWaterQuality.objects.get(id=id)
+    context = {'parameters': parameters}
+    return render(request, 'pages/setting/maintenance/view_pwq.html', context)
 
 
 @login_required(login_url='login')
@@ -338,4 +381,13 @@ def view_customer_collecte(request, id):
         'collecte': collecte
     }
     return render(request, 'pages/collecte/customer/view.html', context)
+
+
+@login_required(login_url='login')
+def rapport_collecte(request):
+    collectes = CollectOnSite.objects.all()
+    context = {
+        'collectes':collectes
+    }
+    return render(request, 'pages/statistiques/rapport_collecte.html', context)
 

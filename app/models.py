@@ -2,7 +2,8 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
 from django.urls import reverse
-from agence.models import *
+from agence.models import Commune, Departement
+
 
 # Create your models here.
 
@@ -69,8 +70,29 @@ class Site(models.Model):
     def get_absolute_url(self):
         return reverse("Site_detail", kwargs={"pk": self.pk})
 
+class StatusAb(models.Model):
+
+    name = models.CharField(max_length=50)
+    is_active = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = _("StatusAb")
+        verbose_name_plural = _("StatusAbs")
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("StatusAb_detail", kwargs={"pk": self.pk})
 
 class Abonne(models.Model):
+
+    status = models.ForeignKey(
+        StatusAb,
+        on_delete=models.CASCADE,
+        null = True,
+        blank= True
+    )
 
     agence = models.ForeignKey(
         'Agence',
@@ -108,4 +130,5 @@ class Abonne(models.Model):
 
     def get_absolute_url(self):
         return reverse("Abonne_detail", kwargs={"pk": self.pk})
+
 

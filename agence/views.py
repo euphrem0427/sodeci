@@ -5,6 +5,7 @@ from .utils import *
 from django.contrib.auth.decorators import login_required
 from accounts.decorators import *
 from django.http import JsonResponse
+from accounts.models import StatusHistory
 # Create your views here
 
 
@@ -263,6 +264,32 @@ def edit_abonne(request, id):
     }
     return render(request, 'pages/abonne/edit.html', context)
 
+
+### CHANGES STATUS ###
+
+def change_status(request, id):
+    statusAb = StatusAb.objects.filter(is_active = True)
+    abonne = Abonne.objects.get(id=id)
+    if request.POST:
+        status_id = request.POST.get('status')
+        status = StatusAb.objects.get(id=status_id)
+        if status == abonne.status:
+            return redirect('list_abonne')
+        else:
+            StatusHistory.objects.create(
+                status = status,
+                abonne = abonne,
+                agent = request.user
+            )
+            abonne.status = status
+            abonne.save()
+            return redirect('list_abonne')
+        
+    context = {
+        'abonne': abonne,
+        'statusAb':statusAb,
+    }
+    return render(request, 'pages/abonne/status.html', context)
 ### VIEWING CUSTOMERS ###
 
 @login_required(login_url='login')

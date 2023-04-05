@@ -9,8 +9,8 @@ $(function() {
         $('#groupe').prop("disabled", !this.checked);
     }).change()
 
-    $('#checkIndex').change(function () {
-        $('#Index').prop("disabled", !this.checked);
+    $('#checknouveau').change(function () {
+        $('#nouveau').prop("disabled", !this.checked);
     }).change()
 
     $('#checkproduction').change(function () {
@@ -40,9 +40,29 @@ $(function() {
     $('#checkprod').change(function () {
         $('#prod').prop("disabled", !this.checked);
     }).change()
-    
-    
 
+    $('#checkautre').change(function () {
+        $('#autre').prop("disabled", !this.checked);
+    }).change()
+
+    //script to calculate production
+    $(document).ready(function() {
+        //this calculates values automatically 
+        Subtract();
+        $("#ancien, #nouveau").on("keydown keyup", function() {
+            Subtract();
+        });
+    });
+    function Subtract() {
+                var ancien = document.getElementById('ancien').value;
+                var nouveau = document.getElementById('nouveau').value;
+                var result = parseInt(nouveau) - parseInt(ancien);
+                if (!isNaN(result)) {
+                    document.getElementById('subt').value = result;
+                }
+            }
+
+    //script to get commune filter by departement
     $("#formAdd select[name='departement']").on('change',function(){
         console.log('Bien changé');
         var $this = $(this);

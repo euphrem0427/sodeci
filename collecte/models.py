@@ -201,8 +201,8 @@ class CollectOnSite(models.Model):
     )
     solaire = models.CharField(max_length=100, null=True)
     groupe_electro = models.CharField(max_length=100, null=True)
-    index_depart = models.IntegerField(null=True)
-    production = models.CharField(max_length=100, null=True)
+    index= models.IntegerField(null=True)
+    #production = models.CharField(max_length=100, null=True)
     sbee = models.CharField(max_length=100, null=True)
     water_quality = models.ForeignKey(
         WaterQuality,
@@ -224,3 +224,13 @@ class CollectOnSite(models.Model):
 
     def get_absolute_url(self):
         return reverse("CollectOnSite_detail", kwargs={"pk": self.pk})
+
+
+class ParametersWaterQuality(models.Model):
+    ph = models.FloatField(null = True, blank = True)
+    humidity = models.FloatField(null = True, blank = True)
+    chlore = models.FloatField(null = True, blank = True)
+    date_time = models.DateTimeField(auto_now_add=True, null = True, blank = True)
+
+    def __str__(self):
+        return str(self.id)

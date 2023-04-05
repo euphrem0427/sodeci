@@ -30,7 +30,7 @@
                             {% for collect in collectes %}
                             <tr>
                                 <td>{{collect.site.title}}</td>
-                                <td>{{collect.agent.first_name}} {{collect.agent.last_name}}</td>
+                                <td>{{collect.agent.first_name}} {{collect.agent.username}}</td>
                                 <td>{{collect.date}}</td>
                                 <td>
                                     <a href="/water_quality/{{collect.water_quality.id}}/" class="btn btn-success m-1">Collecter</a>

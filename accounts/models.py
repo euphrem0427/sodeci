@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from phonenumber_field.modelfields import PhoneNumberField
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
-from app.models import Agence, Site
+from app.models import *
 # Create your models here.
 
 class User(AbstractUser):
@@ -27,3 +27,34 @@ class User(AbstractUser):
 
     class Meta(AbstractUser.Meta):
        swappable = 'AUTH_USER_MODEL'
+
+
+
+class StatusHistory(models.Model):
+
+    abonne = models.ForeignKey(
+        Abonne,
+        on_delete = models.CASCADE,
+    )
+
+    status = models.ForeignKey(
+        StatusAb,
+        on_delete=models.CASCADE,
+    )
+
+    agent = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+    )
+
+    date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = _("StatusHistory")
+        verbose_name_plural = _("StatusHistorys")
+
+    def __str__(self):
+        return str(self.status)
+
+    def get_absolute_url(self):
+        return reverse("StatusHistory_detail", kwargs={"pk": self.pk})

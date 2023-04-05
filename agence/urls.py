@@ -24,6 +24,7 @@ urlpatterns = [
     path('view_abonne/<int:id>/', view_abonne),
     path('import_abonne', import_abonne, name = 'import_abonne'),
     path('export_abonne', export_abonne, name = 'export_abonne'),
+    path('change_status/<int:id>/', change_status),
 
     #Commune & departement
     path('list_departement', list_departement, name = 'list_departement'),
